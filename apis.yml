@@ -3,7 +3,7 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/absence-io/refs/heads/main/apis.yml
 apis:
   - aid: absence-io:absence-io
-    name: Absence.io
+    name: Absence.io API
     tags:
       - Absences
       - Employees
@@ -39,3 +39,36 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 specificationVersion: '0.19'
+common:
+  - name: Prices and packages - absence.io - absence-io
+    description: 'null'
+    url: https://www.absence.io/pricing/pricing-packages/
+    type: Pricing
+  - name: 'absence.io: thats us'
+    description: 'null'
+    url: https://www.absence.io/about-us/
+    type: About
+  - name: docs.absence.io
+    description: 'null'
+    url: https://docs.absence.io/#authentication
+    type: Authentication
+  - name: docs.absence.io
+    description: 'null'
+    url: https://docs.absence.io/#http-response-codes
+    type: StatusCodes
+  - name: Home - Happy Employees, Happy Employers - Our Blog!
+    description: 'null'
+    url: https://blog.absence.io/en/
+    type: Blog
+  - name: The absence.io Partner Program
+    description: 'null'
+    url: https://promo.absence.io/partner-program
+    type: Partners
+  - name: Terms and Conditions - absence-io
+    description: 'null'
+    url: https://www.absence.io/terms-and-conditions/
+    type: TermsOfService
+  - name: Privacy Notice - absence-io
+    description: 'null'
+    url: https://www.absence.io/privacy-notice/
+    type: PrivacyPolicy
