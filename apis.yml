@@ -1,27 +1,41 @@
 aid: absence-io
-name: Absence.io
-description: 'Easy handling with self-explanatory structure. Onboarding '
-type: Index
-position: Consumer
-access: 3rd-Party
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
-created: '2025-02-17'
-modified: '2025-02-17'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/absence-io/refs/heads/main/apis.yml
-specificationVersion: '0.19'
 apis:
   - aid: absence-io:absence-io
     name: Absence.io
-    description: 'Easy handling with self-explanatory structure. Onboarding '
-    humanURL: https://www.absence.io/
     tags:
-      - API
+      - Absences
+      - Employees
+      - Time Tracking
+    humanURL: https://www.absence.io/
     properties:
-      - type: Documentation
-        url: https://www.absence.io/
+      - url: https://www.absence.io/
+        type: Documentation
+      - type: OpenAPI
+        url: properties/absence-io-openapi.yml
+    description: 'Easy handling with self-explanatory structure. Onboarding '
+name: Absence.io
+tags:
+  - Absences
+  - Employees
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+created: '2025-02-17'
+modified: '2025-02-19'
+position: Consumer
+description: >-
+  Absence.io is an innovative and efficient leave management software that
+  simplifies the process of tracking and managing employee absences. It provides
+  a centralized platform for both employees and managers to easily request,
+  approve, and track time-off requests. Absence.io helps streamline
+  communication and ensure transparency within an organization by providing
+  real-time updates on employee availability and leave balances. With its
+  user-friendly interface and customizable features, Absence.io makes it easy
+  for companies to effectively manage their workforce and ensure smooth
+  operations even when employees are out of the office.
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
+specificationVersion: '0.19'
