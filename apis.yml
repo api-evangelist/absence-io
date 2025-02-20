@@ -10,10 +10,10 @@ apis:
       - Time Tracking
     humanURL: https://www.absence.io/
     properties:
-      - url: https://www.absence.io/
+      - url: https://docs.absence.io/
         type: Documentation
-      - type: OpenAPI
-        url: properties/absence-io-openapi.yml
+      - url: properties/absence-io-openapi.yml
+        type: OpenAPI
     description: 'Easy handling with self-explanatory structure. Onboarding '
 name: Absence.io
 tags:
