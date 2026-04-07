@@ -15,16 +15,12 @@ apis:
       - url: properties/absence-io-openapi.yml
         type: OpenAPI
     description: >-
-      Absence.io API is a tool that allows for seamless integration of absence
-      management features into various software applications. With this API,
-      users can easily access and manage information related to employee
-      absences, such as requesting time off, tracking sick leave, and managing
-      vacation days. By utilizing Absence.io API, businesses can streamline
-      their absence management processes, improve communication between
-      employees and supervisors, and ensure accurate tracking of absences. This
-      automation tool can help companies save time and resources by eliminating
-      the need for manual absence tracking systems, allowing for more efficient
-      and effective management of employee absences.
+      Absence.io API is a tool that allows for seamless integration of absence management
+      features into various software applications. With this API, users can easily
+      access and manage information related to employee absences, such as requesting
+      time off, tracking sick leave, and managing vacation days. By utilizing Absence.io
+      API, businesses can streamline their absence management processes, improve communication
+      between employees and supervisors, and ensure accurate tracking of absences.
 name: Absence.io
 tags:
   - Absences
@@ -69,15 +65,12 @@ created: '2025-02-17'
 modified: '2026-03-16'
 position: Consumer
 description: >-
-  Absence.io is an innovative and efficient leave management software that
-  simplifies the process of tracking and managing employee absences. It provides
-  a centralized platform for both employees and managers to easily request,
-  approve, and track time-off requests. Absence.io helps streamline
-  communication and ensure transparency within an organization by providing
-  real-time updates on employee availability and leave balances. With its
-  user-friendly interface and customizable features, Absence.io makes it easy
-  for companies to effectively manage their workforce and ensure smooth
-  operations even when employees are out of the office.
+  Absence.io is an innovative and efficient leave management software that simplifies
+  the process of tracking and managing employee absences. It provides a centralized
+  platform for both employees and managers to easily request, approve, and track time-off
+  requests. Absence.io helps streamline communication and ensure transparency within
+  an organization by providing real-time updates on employee availability and leave
+  balances.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
