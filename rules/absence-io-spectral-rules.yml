@@ -1,0 +1,282 @@
+rules:
+
+  # INFO / METADATA
+  info-title-required:
+    description: API info must have a title.
+    severity: error
+    given: $.info
+    then:
+      field: title
+      function: truthy
+
+  info-title-format:
+    description: API title should follow the "Absence.io ..." naming pattern.
+    severity: warn
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Absence\\.io"
+
+  info-description-required:
+    description: API info must have a description.
+    severity: error
+    given: $.info
+    then:
+      field: description
+      function: truthy
+
+  info-version-required:
+    description: API info must have a version.
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+
+  # OPENAPI VERSION
+  openapi-version:
+    description: API must use OpenAPI 3.x.
+    severity: error
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  # SERVERS
+  servers-required:
+    description: At least one server must be defined.
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+
+  server-https-required:
+    description: All server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  # PATHS — NAMING CONVENTIONS
+  paths-lowercase:
+    description: Path segments should use lowercase with optional underscores.
+    severity: warn
+    given: $.paths
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9_/-]+(\\{[a-zA-Z0-9_]+\\})?)*$"
+
+  # OPERATIONS
+  operation-summary-required:
+    description: Every operation must have a summary.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-prefix:
+    description: Operation summaries should start with "Absence.io".
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Absence\\.io"
+
+  operation-description-required:
+    description: Every operation should have a description.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+
+  operation-operationid-required:
+    description: Every operation must have an operationId.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+
+  operation-operationid-camelcase:
+    description: OperationIds must use camelCase.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  operation-tags-required:
+    description: Every operation must have at least one tag.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+
+  # TAGS
+  tags-array-defined:
+    description: Global tags array should be defined.
+    severity: warn
+    given: $
+    then:
+      field: tags
+      function: truthy
+
+  tag-description-required:
+    description: Each global tag should have a description.
+    severity: warn
+    given: $.tags[*]
+    then:
+      field: description
+      function: truthy
+
+  # PARAMETERS
+  parameter-description-required:
+    description: All parameters must have a description.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    then:
+      field: description
+      function: truthy
+
+  # RESPONSES
+  response-success-required:
+    description: Every operation must have at least one 2xx response.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ['200']
+            - required: ['201']
+            - required: ['204']
+
+  response-401-required:
+    description: Every authenticated operation should have a 401 response.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          required: ['401']
+
+  response-description-required:
+    description: All responses must have a description.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses[*]
+    then:
+      field: description
+      function: truthy
+
+  # SCHEMAS
+  schema-description-required:
+    description: Top-level schemas should have descriptions.
+    severity: warn
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: truthy
+
+  schema-type-defined:
+    description: All schemas should have a type defined.
+    severity: warn
+    given: $.components.schemas[*]
+    then:
+      field: type
+      function: truthy
+
+  schema-properties-snake-case:
+    description: Schema property names should use snake_case or camelCase.
+    severity: info
+    given: $.components.schemas[*].properties
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  # SECURITY
+  security-schemes-defined:
+    description: Security schemes must be defined in components.
+    severity: error
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy
+
+  operation-security-defined:
+    description: Every operation should have security defined.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: security
+      function: truthy
+
+  # ABSENCE.IO SPECIFIC — POST for listing
+  list-operations-use-post:
+    description: Absence.io uses POST for list operations (not GET). This is a provider-specific pattern.
+    severity: info
+    given: $.paths
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  # PAGINATION
+  list-request-skip-limit:
+    description: List request bodies should include skip and limit for pagination.
+    severity: info
+    given: $.paths[*].post.requestBody.content.application/json.schema.properties
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  # GENERAL QUALITY
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings.
+    severity: error
+    given: $..description
+    then:
+      function: pattern
+      functionOptions:
+        match: ".+"
+
+  examples-encouraged:
+    description: Operations should have examples for better developer experience.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete].responses[*].content[*]
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ['example']
+            - required: ['examples']
+
+  # MONGOOSE IDS
+  id-field-naming:
+    description: Absence.io uses MongoDB-style _id fields (not id). Ensure IDs follow this convention.
+    severity: info
+    given: $.components.schemas[*].properties
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object

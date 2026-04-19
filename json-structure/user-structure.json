@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/absence-io/refs/heads/main/json-structure/user-structure.json",
+  "name": "User",
+  "description": "An employee user record.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier of the user.",
+      "example": "500456"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name of the user.",
+      "example": "Jane Smith"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address of the user.",
+      "example": "jsmith@example.com"
+    },
+    "departmentId": {
+      "type": "string",
+      "description": "ID of the department the user belongs to.",
+      "example": "500999"
+    },
+    "locationId": {
+      "type": "string",
+      "description": "ID of the location the user is assigned to.",
+      "example": "500888"
+    },
+    "teamId": {
+      "type": "string",
+      "description": "ID of the team the user belongs to.",
+      "example": "500111"
+    },
+    "status": {
+      "type": "int32",
+      "description": "User status: 1=active, 0=inactive.",
+      "example": 1
+    },
+    "language": {
+      "type": "string",
+      "description": "User's preferred language code.",
+      "example": "en"
+    }
+  }
+}

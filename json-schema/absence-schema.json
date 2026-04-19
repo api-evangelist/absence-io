@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/absence-io/refs/heads/main/json-schema/absence-schema.json",
+  "title": "Absence",
+  "description": "An employee absence record.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier of the absence.",
+      "example": "500123"
+    },
+    "assignedToId": {
+      "type": "string",
+      "description": "ID of the user this absence is assigned to.",
+      "example": "500456"
+    },
+    "reasonId": {
+      "type": "string",
+      "description": "ID of the absence reason type.",
+      "example": "500789"
+    },
+    "approverId": {
+      "type": "string",
+      "description": "ID of the user who approved this absence.",
+      "example": "500654"
+    },
+    "start": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start date and time of the absence.",
+      "example": "2025-06-01T00:00:00.000Z"
+    },
+    "end": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End date and time of the absence.",
+      "example": "2025-06-05T23:59:59.999Z"
+    },
+    "days": {
+      "type": "number",
+      "description": "Number of working days covered by the absence.",
+      "example": 5
+    },
+    "status": {
+      "type": "integer",
+      "description": "Absence approval status: 0=pending, 1=approved, 2=declined.",
+      "example": 1
+    },
+    "comment": {
+      "type": "string",
+      "description": "Optional comment or note on the absence.",
+      "example": "Annual leave"
+    }
+  }
+}

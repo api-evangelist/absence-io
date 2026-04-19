@@ -1,0 +1,7 @@
+{
+  "_id": "500789",
+  "name": "Vacation",
+  "color": "#4CAF50",
+  "requiresApproval": true,
+  "affectsAllowance": true
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/absence-io/refs/heads/main/json-structure/location-structure.json",
+  "name": "Location",
+  "description": "An office or work location.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier of the location.",
+      "example": "500888"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the location.",
+      "example": "HQ-SanFrancisco"
+    },
+    "timezone": {
+      "type": "string",
+      "description": "Timezone identifier for this location.",
+      "example": "America/Los_Angeles"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country code for the location.",
+      "example": "US"
+    }
+  }
+}

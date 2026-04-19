@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/absence-io/refs/heads/main/json-schema/reason-type-schema.json",
+  "title": "ReasonType",
+  "description": "An absence reason type (e.g., vacation, sick leave, parental leave).",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier of the reason type.",
+      "example": "500789"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the absence reason.",
+      "example": "Vacation"
+    },
+    "color": {
+      "type": "string",
+      "description": "Color code for displaying this absence type in the calendar.",
+      "example": "#4CAF50"
+    },
+    "requiresApproval": {
+      "type": "boolean",
+      "description": "Whether absences of this type require manager approval.",
+      "example": true
+    },
+    "affectsAllowance": {
+      "type": "boolean",
+      "description": "Whether absences of this type count against the employee's allowance.",
+      "example": true
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/absence-io/refs/heads/main/json-structure/timespan-structure.json",
+  "name": "Timespan",
+  "description": "A working time configuration defining work hours and schedule.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier of the timespan.",
+      "example": "500567"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the working time configuration.",
+      "example": "Standard Work Week"
+    },
+    "hoursPerDay": {
+      "type": "double",
+      "description": "Number of working hours per day.",
+      "example": 8
+    },
+    "daysPerWeek": {
+      "type": "int32",
+      "description": "Number of working days per week.",
+      "example": 5
+    }
+  }
+}

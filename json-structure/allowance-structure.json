@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/absence-io/refs/heads/main/json-structure/allowance-structure.json",
+  "name": "Allowance",
+  "description": "An employee leave allowance record for a specific reason type and year.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier of the allowance.",
+      "example": "500234"
+    },
+    "userId": {
+      "type": "string",
+      "description": "ID of the user this allowance belongs to.",
+      "example": "500456"
+    },
+    "reasonId": {
+      "type": "string",
+      "description": "ID of the absence reason type this allowance is for.",
+      "example": "500789"
+    },
+    "year": {
+      "type": "int32",
+      "description": "Calendar year this allowance applies to.",
+      "example": 2025
+    },
+    "allowance": {
+      "type": "double",
+      "description": "Total number of days allowed.",
+      "example": 25
+    },
+    "used": {
+      "type": "double",
+      "description": "Number of days used.",
+      "example": 10
+    },
+    "remaining": {
+      "type": "double",
+      "description": "Number of days remaining.",
+      "example": 15
+    },
+    "carryover": {
+      "type": "double",
+      "description": "Number of days carried over from the previous year.",
+      "example": 0
+    }
+  }
+}

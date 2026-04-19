@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/absence-io/refs/heads/main/json-structure/department-structure.json",
+  "name": "Department",
+  "description": "An organizational department.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier of the department.",
+      "example": "500999"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the department.",
+      "example": "Engineering"
+    },
+    "managerId": {
+      "type": "string",
+      "description": "ID of the department manager.",
+      "example": "500456"
+    },
+    "parentId": {
+      "type": "string",
+      "description": "ID of the parent department if hierarchical.",
+      "example": "500000"
+    }
+  }
+}

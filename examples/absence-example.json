@@ -1,0 +1,11 @@
+{
+  "_id": "500123",
+  "assignedToId": "500456",
+  "reasonId": "500789",
+  "approverId": "500654",
+  "start": "2025-06-01T00:00:00.000Z",
+  "end": "2025-06-05T23:59:59.999Z",
+  "days": 5,
+  "status": 1,
+  "comment": "Annual leave"
+}

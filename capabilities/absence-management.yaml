@@ -1,0 +1,263 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Absence.io Absence Management"
+  description: "Unified workflow for managing employee absences, tracking leave balances, and administering organizational structure in Absence.io. Designed for HR managers, payroll teams, and integration developers building absence management workflows."
+  tags:
+    - Absence Management
+    - HR
+    - Leave Management
+    - Payroll
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ABSENCE_IO_API_KEY_ID: ABSENCE_IO_API_KEY_ID
+      ABSENCE_IO_API_KEY: ABSENCE_IO_API_KEY
+
+capability:
+  consumes:
+    - import: absence-io
+      location: ./shared/absence-io.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: absence-management-api
+      description: "Unified REST API for comprehensive absence and leave management."
+      resources:
+        - path: /v1/absences
+          name: absences
+          description: "Employee absence records."
+          operations:
+            - method: GET
+              name: list-absences
+              description: "List all employee absences."
+              call: "absence-io.list-absences"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-absence
+              description: "Create a new absence record."
+              call: "absence-io.create-absence"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/absences/{id}
+          name: absence-by-id
+          description: "A specific absence record."
+          operations:
+            - method: GET
+              name: get-absence
+              description: "Get an absence by ID."
+              call: "absence-io.get-absence"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PUT
+              name: update-absence
+              description: "Update an absence."
+              call: "absence-io.update-absence"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-absence
+              description: "Delete an absence."
+              call: "absence-io.delete-absence"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/employees
+          name: employees
+          description: "Employee records."
+          operations:
+            - method: GET
+              name: list-users
+              description: "List all employees."
+              call: "absence-io.list-users"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/employees/{id}
+          name: employee-by-id
+          description: "A specific employee record."
+          operations:
+            - method: GET
+              name: get-user
+              description: "Get an employee by ID."
+              call: "absence-io.get-user"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/allowances
+          name: allowances
+          description: "Employee leave allowances."
+          operations:
+            - method: GET
+              name: list-allowances
+              description: "List employee leave allowances."
+              call: "absence-io.list-allowances"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/departments
+          name: departments
+          description: "Organizational departments."
+          operations:
+            - method: GET
+              name: list-departments
+              description: "List departments."
+              call: "absence-io.list-departments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/locations
+          name: locations
+          description: "Office locations."
+          operations:
+            - method: GET
+              name: list-locations
+              description: "List locations."
+              call: "absence-io.list-locations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/absence-types
+          name: absence-types
+          description: "Absence reason types."
+          operations:
+            - method: GET
+              name: list-reason-types
+              description: "List absence reason types."
+              call: "absence-io.list-reason-types"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: absence-management-mcp
+      transport: http
+      description: "MCP server for AI-assisted absence and leave management workflows."
+      tools:
+        - name: list-absences
+          description: "List employee absences. Supports date range filtering and pagination."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "absence-io.list-absences"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-absence
+          description: "Get details of a specific absence record by its ID."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "absence-io.get-absence"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-absence
+          description: "Create a new absence record for an employee."
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "absence-io.create-absence"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-absence
+          description: "Update an existing absence record (change dates, reason, etc.)."
+          hints:
+            readOnly: false
+            openWorld: false
+            idempotent: true
+          call: "absence-io.update-absence"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-absence
+          description: "Delete an absence record permanently."
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "absence-io.delete-absence"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-employees
+          description: "List all employees in the organization with their department and location assignments."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "absence-io.list-users"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-employee
+          description: "Get detailed information about a specific employee."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "absence-io.get-user"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-leave-allowances
+          description: "List employee leave allowances and remaining balances for the year."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "absence-io.list-allowances"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-departments
+          description: "List all organizational departments."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "absence-io.list-departments"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-locations
+          description: "List all office locations."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "absence-io.list-locations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-absence-types
+          description: "List all absence reason types (vacation, sick leave, parental leave, etc.)."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "absence-io.list-reason-types"
+          outputParameters:
+            - type: object
+              mapping: "$."

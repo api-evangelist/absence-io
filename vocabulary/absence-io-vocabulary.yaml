@@ -1,0 +1,259 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Absence.io"
+  description: "Vocabulary covering Absence.io absence management resources, operations, and workflows."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: absence-io
+      version: "2.0.0"
+      baseUrl: https://app.absence.io/api/v2
+      status: active
+      description: "Absence.io REST API v2 for leave management"
+
+  resources:
+    - name: absences
+      apis:
+        - absence-io
+      actions:
+        - list
+        - get
+        - create
+        - update
+        - delete
+      description: "Employee absence records"
+    - name: users
+      apis:
+        - absence-io
+      actions:
+        - list
+        - get
+      description: "Employee user records"
+    - name: allowances
+      apis:
+        - absence-io
+      actions:
+        - list
+      description: "Employee leave allowance balances"
+    - name: departments
+      apis:
+        - absence-io
+      actions:
+        - list
+      description: "Organizational departments"
+    - name: locations
+      apis:
+        - absence-io
+      actions:
+        - list
+      description: "Office locations"
+    - name: reason-types
+      apis:
+        - absence-io
+      actions:
+        - list
+      description: "Absence reason type definitions"
+    - name: timespans
+      apis:
+        - absence-io
+      actions:
+        - list
+      description: "Working time configurations"
+
+  actions:
+    - name: list
+      httpMethod: POST
+      pattern: query
+      description: "Retrieve list of records with filters and pagination"
+    - name: get
+      httpMethod: GET
+      pattern: read
+      description: "Retrieve a specific record by ID"
+    - name: create
+      httpMethod: POST
+      pattern: write
+      description: "Create a new record"
+    - name: update
+      httpMethod: PUT
+      pattern: write
+      description: "Update an existing record"
+    - name: delete
+      httpMethod: DELETE
+      pattern: destructive
+      description: "Delete a record"
+
+  schemas:
+    core:
+      - name: Absence
+        description: "Employee absence record"
+        keyProperties:
+          - _id
+          - assignedToId
+          - reasonId
+          - start
+          - end
+          - days
+          - status
+      - name: User
+        description: "Employee user record"
+        keyProperties:
+          - _id
+          - name
+          - email
+          - departmentId
+          - locationId
+          - status
+      - name: Allowance
+        description: "Employee leave allowance"
+        keyProperties:
+          - _id
+          - userId
+          - reasonId
+          - year
+          - allowance
+          - used
+          - remaining
+      - name: ReasonType
+        description: "Absence reason type"
+        keyProperties:
+          - _id
+          - name
+          - color
+          - requiresApproval
+
+  parameters:
+    pagination:
+      - name: skip
+        description: "Number of records to skip"
+        type: integer
+      - name: limit
+        description: "Maximum records to return"
+        type: integer
+    filters:
+      - name: filter
+        description: "MongoDB-style filter object"
+        type: object
+    identifiers:
+      - name: id
+        description: "MongoDB ObjectId (stored as _id in records)"
+        type: string
+
+  enums:
+    absence-status:
+      - 0 (pending)
+      - 1 (approved)
+      - 2 (declined)
+    user-status:
+      - 0 (inactive)
+      - 1 (active)
+
+  authentication:
+    schemes:
+      - name: HawkAuth
+        type: hawk
+        description: "Hawk authentication using API key ID and API key generated from account settings"
+
+capability:
+  workflows:
+    - name: Absence Management
+      file: capabilities/absence-management.yaml
+      description: "Unified workflow for managing employee absences, leave balances, and org structure"
+      apisComposed:
+        - absence-io
+      toolCount: 11
+      personas:
+        - HR Manager
+        - Payroll Processor
+        - Integration Developer
+
+  personas:
+    - id: hr-manager
+      name: HR Manager
+      description: "HR professionals managing employee leave requests and approvals"
+      workflows:
+        - Absence Management
+    - id: payroll-processor
+      name: Payroll Processor
+      description: "Payroll teams using absence data to calculate leave deductions and entitlements"
+      workflows:
+        - Absence Management
+    - id: integration-developer
+      name: Integration Developer
+      description: "Developers building integrations between Absence.io and ERP/HRIS systems"
+      workflows:
+        - Absence Management
+
+  domains:
+    - name: Leave Management
+      description: "Employee absence tracking, approval workflows, and leave balance management"
+      resources:
+        - absences
+        - allowances
+        - reason-types
+      workflows:
+        - Absence Management
+    - name: Organization
+      description: "Organizational structure including departments, locations, and employees"
+      resources:
+        - users
+        - departments
+        - locations
+        - timespans
+      workflows:
+        - Absence Management
+
+  namespaces:
+    - name: absence-io
+      type: consumed
+      baseUri: https://app.absence.io/api/v2
+    - name: absence-management-api
+      type: rest-exposed
+      port: 8080
+    - name: absence-management-mcp
+      type: mcp-exposed
+      port: 9090
+
+  binds:
+    - name: ABSENCE_IO_API_KEY_ID
+      description: "Absence.io API key ID from account Integrations settings"
+      workflows:
+        - Absence Management
+    - name: ABSENCE_IO_API_KEY
+      description: "Absence.io API key from account Integrations settings"
+      workflows:
+        - Absence Management
+
+crossReference:
+  - resource: absences
+    operations:
+      - list-absences
+      - get-absence
+      - create-absence
+      - update-absence
+      - delete-absence
+    workflows:
+      - Absence Management
+    personas:
+      - HR Manager
+      - Payroll Processor
+      - Integration Developer
+  - resource: allowances
+    operations:
+      - list-allowances
+    workflows:
+      - Absence Management
+    personas:
+      - HR Manager
+      - Payroll Processor
+  - resource: users
+    operations:
+      - list-users
+      - get-user
+    workflows:
+      - Absence Management
+    personas:
+      - HR Manager
+      - Integration Developer

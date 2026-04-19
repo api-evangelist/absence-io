@@ -1,0 +1,10 @@
+{
+  "_id": "500234",
+  "userId": "500456",
+  "reasonId": "500789",
+  "year": 2025,
+  "allowance": 25,
+  "used": 10,
+  "remaining": 15,
+  "carryover": 0
+}

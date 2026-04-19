@@ -1,0 +1,130 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "absence": "https://absence.io/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Timespan": "absence:Timespan",
+    "Id": {
+      "@id": "absence:_id",
+      "@type": "xsd:string"
+    },
+    "name": "schema:name",
+    "hoursPerDay": {
+      "@id": "absence:hoursPerDay",
+      "@type": "xsd:decimal"
+    },
+    "daysPerWeek": {
+      "@id": "absence:daysPerWeek",
+      "@type": "xsd:integer"
+    },
+    "Department": "absence:Department",
+    "managerId": {
+      "@id": "absence:managerId",
+      "@type": "xsd:string"
+    },
+    "parentId": {
+      "@id": "absence:parentId",
+      "@type": "xsd:string"
+    },
+    "Location": "absence:Location",
+    "timezone": {
+      "@id": "absence:timezone",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "absence:country",
+      "@type": "xsd:string"
+    },
+    "ReasonType": "absence:ReasonType",
+    "color": {
+      "@id": "absence:color",
+      "@type": "xsd:string"
+    },
+    "requiresApproval": {
+      "@id": "absence:requiresApproval",
+      "@type": "xsd:boolean"
+    },
+    "affectsAllowance": {
+      "@id": "absence:affectsAllowance",
+      "@type": "xsd:boolean"
+    },
+    "Absence": "absence:Absence",
+    "assignedToId": {
+      "@id": "absence:assignedToId",
+      "@type": "xsd:string"
+    },
+    "reasonId": {
+      "@id": "absence:reasonId",
+      "@type": "xsd:string"
+    },
+    "approverId": {
+      "@id": "absence:approverId",
+      "@type": "xsd:string"
+    },
+    "start": {
+      "@id": "absence:start",
+      "@type": "xsd:dateTime"
+    },
+    "end": {
+      "@id": "absence:end",
+      "@type": "xsd:dateTime"
+    },
+    "days": {
+      "@id": "absence:days",
+      "@type": "xsd:decimal"
+    },
+    "status": {
+      "@id": "absence:status",
+      "@type": "xsd:integer"
+    },
+    "comment": {
+      "@id": "absence:comment",
+      "@type": "xsd:string"
+    },
+    "User": "absence:User",
+    "email": "schema:email",
+    "departmentId": {
+      "@id": "absence:departmentId",
+      "@type": "xsd:string"
+    },
+    "locationId": {
+      "@id": "absence:locationId",
+      "@type": "xsd:string"
+    },
+    "teamId": {
+      "@id": "absence:teamId",
+      "@type": "xsd:string"
+    },
+    "language": {
+      "@id": "absence:language",
+      "@type": "xsd:string"
+    },
+    "Allowance": "absence:Allowance",
+    "userId": {
+      "@id": "absence:userId",
+      "@type": "xsd:string"
+    },
+    "year": {
+      "@id": "absence:year",
+      "@type": "xsd:integer"
+    },
+    "allowance": {
+      "@id": "absence:allowance",
+      "@type": "xsd:decimal"
+    },
+    "used": {
+      "@id": "absence:used",
+      "@type": "xsd:decimal"
+    },
+    "remaining": {
+      "@id": "absence:remaining",
+      "@type": "xsd:decimal"
+    },
+    "carryover": {
+      "@id": "absence:carryover",
+      "@type": "xsd:decimal"
+    }
+  }
+}
