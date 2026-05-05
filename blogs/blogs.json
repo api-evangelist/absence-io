@@ -1,0 +1,13 @@
+{
+  "repo": "absence-io",
+  "feeds": [
+    {
+      "source": "https://blog.absence.io/en/",
+      "feed_url": "https://blog.absence.io/en/feed/",
+      "saved": 5,
+      "title": "Happy Employees, Happy Employers \u2013 Our Blog!"
+    }
+  ],
+  "post_count": 5,
+  "fetched": "2026-05-03T23:20:28Z"
+}
