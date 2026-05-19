@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Absence.io API — Locations
+  description: 'Absence.io API — Locations. 1 operations. Lead operation: Absence.io List Locations. Self-contained Naftiko
+    capability covering one Absence Io business surface.'
+  tags:
+  - Absence Io
+  - Locations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ABSENCE_IO_API_KEY: ABSENCE_IO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: absence-io-locations
+    baseUri: https://app.absence.io/api/v2
+    description: Absence.io API — Locations business capability. Self-contained, no shared references.
+    resources:
+    - name: locations
+      path: /locations
+      operations:
+      - name: listlocations
+        method: POST
+        description: Absence.io List Locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: absence-io-locations-rest
+    port: 8080
+    description: REST adapter for Absence.io API — Locations. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/locations
+      name: locations
+      description: REST surface for locations.
+      operations:
+      - method: POST
+        name: listlocations
+        description: Absence.io List Locations
+        call: absence-io-locations.listlocations
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: absence-io-locations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Absence.io API — Locations. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: absence-io-list-locations
+      description: Absence.io List Locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: absence-io-locations.listlocations
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

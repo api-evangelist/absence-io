@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Absence.io API — Timespans
+  description: 'Absence.io API — Timespans. 1 operations. Lead operation: Absence.io List Timespans. Self-contained Naftiko
+    capability covering one Absence Io business surface.'
+  tags:
+  - Absence Io
+  - Timespans
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ABSENCE_IO_API_KEY: ABSENCE_IO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: absence-io-timespans
+    baseUri: https://app.absence.io/api/v2
+    description: Absence.io API — Timespans business capability. Self-contained, no shared references.
+    resources:
+    - name: timespans
+      path: /timespans
+      operations:
+      - name: listtimespans
+        method: POST
+        description: Absence.io List Timespans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: absence-io-timespans-rest
+    port: 8080
+    description: REST adapter for Absence.io API — Timespans. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/timespans
+      name: timespans
+      description: REST surface for timespans.
+      operations:
+      - method: POST
+        name: listtimespans
+        description: Absence.io List Timespans
+        call: absence-io-timespans.listtimespans
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: absence-io-timespans-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Absence.io API — Timespans. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: absence-io-list-timespans
+      description: Absence.io List Timespans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: absence-io-timespans.listtimespans
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

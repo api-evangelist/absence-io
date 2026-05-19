@@ -1,0 +1,238 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Absence.io API — Absences
+  description: 'Absence.io API — Absences. 5 operations. Lead operation: Absence.io List Absences. Self-contained Naftiko
+    capability covering one Absence Io business surface.'
+  tags:
+  - Absence Io
+  - Absences
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ABSENCE_IO_API_KEY: ABSENCE_IO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: absence-io-absences
+    baseUri: https://app.absence.io/api/v2
+    description: Absence.io API — Absences business capability. Self-contained, no shared references.
+    resources:
+    - name: absences
+      path: /absences
+      operations:
+      - name: listabsences
+        method: POST
+        description: Absence.io List Absences
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: absences-create
+      path: /absences/create
+      operations:
+      - name: createabsence
+        method: POST
+        description: Absence.io Create Absence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: absences-id
+      path: /absences/{id}
+      operations:
+      - name: getabsence
+        method: GET
+        description: Absence.io Get Absence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The unique identifier of the absence record.
+          required: true
+      - name: updateabsence
+        method: PUT
+        description: Absence.io Update Absence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The unique identifier of the absence record.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteabsence
+        method: DELETE
+        description: Absence.io Delete Absence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The unique identifier of the absence record.
+          required: true
+  exposes:
+  - type: rest
+    namespace: absence-io-absences-rest
+    port: 8080
+    description: REST adapter for Absence.io API — Absences. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/absences
+      name: absences
+      description: REST surface for absences.
+      operations:
+      - method: POST
+        name: listabsences
+        description: Absence.io List Absences
+        call: absence-io-absences.listabsences
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/absences/create
+      name: absences-create
+      description: REST surface for absences-create.
+      operations:
+      - method: POST
+        name: createabsence
+        description: Absence.io Create Absence
+        call: absence-io-absences.createabsence
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/absences/{id}
+      name: absences-id
+      description: REST surface for absences-id.
+      operations:
+      - method: GET
+        name: getabsence
+        description: Absence.io Get Absence
+        call: absence-io-absences.getabsence
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateabsence
+        description: Absence.io Update Absence
+        call: absence-io-absences.updateabsence
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteabsence
+        description: Absence.io Delete Absence
+        call: absence-io-absences.deleteabsence
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: absence-io-absences-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Absence.io API — Absences. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: absence-io-list-absences
+      description: Absence.io List Absences
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: absence-io-absences.listabsences
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: absence-io-create-absence
+      description: Absence.io Create Absence
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: absence-io-absences.createabsence
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: absence-io-get-absence
+      description: Absence.io Get Absence
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: absence-io-absences.getabsence
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: absence-io-update-absence
+      description: Absence.io Update Absence
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: absence-io-absences.updateabsence
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: absence-io-delete-absence
+      description: Absence.io Delete Absence
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: absence-io-absences.deleteabsence
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
