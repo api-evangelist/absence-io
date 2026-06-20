@@ -2,7 +2,7 @@ aid: absence-io
 url: https://raw.githubusercontent.com/api-evangelist/absence-io/refs/heads/main/apis.yml
 name: Absence.io
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Absences
   - Employees
