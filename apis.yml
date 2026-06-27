@@ -33,7 +33,7 @@ apis:
         url: https://docs.absence.io/#authentication
       - type: OpenAPI
         url: openapi/absence-io-openapi.yml
-      - type: SDK
+      - type: SDKs
         url: https://www.npmjs.com/package/absence.io
         title: Node.js SDK
       - type: JSONSchema
