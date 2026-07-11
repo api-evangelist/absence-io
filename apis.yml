@@ -50,6 +50,10 @@ apis:
       Retrieve, create, update, and delete records for absences, users, allowances, departments, locations, reason
       types, and timespans. All requests and responses use JSON format with Hawk authentication.
 common:
+  - type: DomainSecurity
+    url: security/absence-io-domain-security.yml
+  - type: Authentication
+    url: authentication/absence-io-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/absenceio
   - type: LinkedIn

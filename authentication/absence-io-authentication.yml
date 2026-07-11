@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/absence-io-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: HawkAuth
+  type: http
+  scheme: hawk
+  description: Hawk authentication using an API key ID and API key. Generate your API key from
+    your absence.io account profile under the Integrations tab. Use the @hapi/hawk library to
+    generate the Authorization header with SHA256 algorithm.
+  sources:
+  - openapi/absence-io-openapi.yml
