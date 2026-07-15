@@ -50,6 +50,8 @@ apis:
       Retrieve, create, update, and delete records for absences, users, allowances, departments, locations, reason
       types, and timespans. All requests and responses use JSON format with Hawk authentication.
 common:
+  - type: AgenticAccess
+    url: agentic-access/absence-io-agentic-access.yml
   - type: DomainSecurity
     url: security/absence-io-domain-security.yml
   - type: Authentication
