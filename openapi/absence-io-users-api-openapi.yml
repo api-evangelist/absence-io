@@ -1,0 +1,224 @@
+openapi: 3.1.0
+info:
+  title: Absence.io Absences Users API
+  description: The Absence.io REST API allows integration with absence management features. With this API, users can retrieve, create, update, and delete information related to employee absences, allowances, users, departments, locations, and reason types. All requests and responses use JSON format. Authentication uses the Hawk authentication scheme with an API key generated from the Absence.io account settings under Integrations.
+  version: 2.0.0
+  contact:
+    url: https://www.absence.io/contact
+  license:
+    name: Proprietary
+    url: https://www.absence.io/terms-and-conditions/
+  x-generated-from: documentation
+servers:
+- url: https://app.absence.io/api/v2
+  description: Production server
+tags:
+- name: Users
+  description: Operations for retrieving user/employee information.
+paths:
+  /users:
+    post:
+      operationId: listUsers
+      summary: Absence.io List Users
+      description: Retrieve a paginated list of users in the organization with optional filters.
+      tags:
+      - Users
+      security:
+      - HawkAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListRequest'
+            examples:
+              ListUsersRequestExample:
+                summary: Default listUsers request
+                x-microcks-default: true
+                value:
+                  skip: 0
+                  limit: 50
+      responses:
+        '200':
+          description: Successful response with list of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+              examples:
+                ListUsers200Example:
+                  summary: Default listUsers 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - _id: '500456'
+                      name: Jane Smith
+                      email: jsmith@example.com
+                      departmentId: '500999'
+                      status: 1
+                    skip: 0
+                    limit: 50
+                    count: 1
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /users/{id}:
+    get:
+      operationId: getUser
+      summary: Absence.io Get User
+      description: Retrieve a specific user record by their unique identifier.
+      tags:
+      - Users
+      security:
+      - HawkAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier of the user.
+        schema:
+          type: string
+          example: '500456'
+      responses:
+        '200':
+          description: Successful response with user details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                GetUser200Example:
+                  summary: Default getUser 200 response
+                  x-microcks-default: true
+                  value:
+                    _id: '500456'
+                    name: Jane Smith
+                    email: jsmith@example.com
+                    departmentId: '500999'
+                    locationId: '500888'
+                    status: 1
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ListRequest:
+      title: ListRequest
+      description: Common request body for list operations with pagination and filtering.
+      type: object
+      properties:
+        skip:
+          type: integer
+          description: Number of records to skip for pagination.
+          example: 0
+        limit:
+          type: integer
+          description: Maximum number of records to return per page.
+          example: 50
+        filter:
+          type: object
+          description: MongoDB-style filter object. Supports operators like $gte, $lte, $eq.
+          example:
+            start:
+              $gte: '2025-01-01T00:00:00.000Z'
+        relations:
+          type: array
+          description: List of related fields to resolve (dereference IDs to full objects).
+          items:
+            type: string
+          example:
+          - assignedToId
+          - reasonId
+    UserListResponse:
+      title: UserListResponse
+      description: Paginated list response containing user records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of user records.
+          items:
+            $ref: '#/components/schemas/User'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 100
+    User:
+      title: User
+      description: An employee user record.
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the user.
+          example: '500456'
+        name:
+          type: string
+          description: Full name of the user.
+          example: Jane Smith
+        email:
+          type: string
+          format: email
+          description: Email address of the user.
+          example: jsmith@example.com
+        departmentId:
+          type: string
+          description: ID of the department the user belongs to.
+          example: '500999'
+        locationId:
+          type: string
+          description: ID of the location the user is assigned to.
+          example: '500888'
+        teamId:
+          type: string
+          description: ID of the team the user belongs to.
+          example: '500111'
+        status:
+          type: integer
+          description: 'User status: 1=active, 0=inactive.'
+          example: 1
+        language:
+          type: string
+          description: User's preferred language code.
+          example: en
+    Error:
+      title: Error
+      description: Error response returned when a request fails.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message describing what went wrong.
+          example: Unauthorized
+        statusCode:
+          type: integer
+          description: HTTP status code.
+          example: 401
+  securitySchemes:
+    HawkAuth:
+      type: http
+      scheme: hawk
+      description: Hawk authentication using an API key ID and API key. Generate your API key from your absence.io account profile under the Integrations tab. Use the @hapi/hawk library to generate the Authorization header with SHA256 algorithm.

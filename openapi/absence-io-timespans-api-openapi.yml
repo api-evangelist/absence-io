@@ -1,0 +1,156 @@
+openapi: 3.1.0
+info:
+  title: Absence.io Absences Timespans API
+  description: The Absence.io REST API allows integration with absence management features. With this API, users can retrieve, create, update, and delete information related to employee absences, allowances, users, departments, locations, and reason types. All requests and responses use JSON format. Authentication uses the Hawk authentication scheme with an API key generated from the Absence.io account settings under Integrations.
+  version: 2.0.0
+  contact:
+    url: https://www.absence.io/contact
+  license:
+    name: Proprietary
+    url: https://www.absence.io/terms-and-conditions/
+  x-generated-from: documentation
+servers:
+- url: https://app.absence.io/api/v2
+  description: Production server
+tags:
+- name: Timespans
+  description: Operations for retrieving working time configurations.
+paths:
+  /timespans:
+    post:
+      operationId: listTimespans
+      summary: Absence.io List Timespans
+      description: Retrieve a list of working time configurations and schedules.
+      tags:
+      - Timespans
+      security:
+      - HawkAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListRequest'
+            examples:
+              ListTimespansRequestExample:
+                summary: Default listTimespans request
+                x-microcks-default: true
+                value:
+                  skip: 0
+                  limit: 50
+      responses:
+        '200':
+          description: Successful response with list of timespans
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimespanListResponse'
+              examples:
+                ListTimespans200Example:
+                  summary: Default listTimespans 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - _id: '500567'
+                      name: Standard Work Week
+                      hoursPerDay: 8
+                      daysPerWeek: 5
+                    skip: 0
+                    limit: 50
+                    count: 1
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ListRequest:
+      title: ListRequest
+      description: Common request body for list operations with pagination and filtering.
+      type: object
+      properties:
+        skip:
+          type: integer
+          description: Number of records to skip for pagination.
+          example: 0
+        limit:
+          type: integer
+          description: Maximum number of records to return per page.
+          example: 50
+        filter:
+          type: object
+          description: MongoDB-style filter object. Supports operators like $gte, $lte, $eq.
+          example:
+            start:
+              $gte: '2025-01-01T00:00:00.000Z'
+        relations:
+          type: array
+          description: List of related fields to resolve (dereference IDs to full objects).
+          items:
+            type: string
+          example:
+          - assignedToId
+          - reasonId
+    Timespan:
+      title: Timespan
+      description: A working time configuration defining work hours and schedule.
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the timespan.
+          example: '500567'
+        name:
+          type: string
+          description: Name of the working time configuration.
+          example: Standard Work Week
+        hoursPerDay:
+          type: number
+          description: Number of working hours per day.
+          example: 8
+        daysPerWeek:
+          type: integer
+          description: Number of working days per week.
+          example: 5
+    TimespanListResponse:
+      title: TimespanListResponse
+      description: Paginated list response containing timespan records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of timespan records.
+          items:
+            $ref: '#/components/schemas/Timespan'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 3
+    Error:
+      title: Error
+      description: Error response returned when a request fails.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message describing what went wrong.
+          example: Unauthorized
+        statusCode:
+          type: integer
+          description: HTTP status code.
+          example: 401
+  securitySchemes:
+    HawkAuth:
+      type: http
+      scheme: hawk
+      description: Hawk authentication using an API key ID and API key. Generate your API key from your absence.io account profile under the Integrations tab. Use the @hapi/hawk library to generate the Authorization header with SHA256 algorithm.
