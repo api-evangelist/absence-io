@@ -2,7 +2,20 @@ aid: absence-io
 url: https://raw.githubusercontent.com/api-evangelist/absence-io/refs/heads/main/apis.yml
 name: Absence.io
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/absence-io.png
 tags:
   - Absences
   - Employees
@@ -19,37 +32,156 @@ created: '2025-02-17'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: absence-io:absence-io
-    name: Absence.io API
-    tags:
-      - Absences
-      - Employees
-      - Leave Management
-    humanURL: https://www.absence.io/
-    properties:
-      - type: Documentation
-        url: https://docs.absence.io/
-      - type: Authentication
-        url: https://docs.absence.io/#authentication
-      - type: OpenAPI
-        url: openapi/absence-io-openapi.yml
-      - type: SDKs
-        url: https://www.npmjs.com/package/absence.io
-        title: Node.js SDK
-      - type: JSONSchema
-        url: json-schema/absence-schema.json
-        title: Absence Schema
-      - type: JSONSchema
-        url: json-schema/user-schema.json
-        title: User Schema
-      - type: JSONSchema
-        url: json-schema/allowance-schema.json
-        title: Allowance Schema
-    description: >-
-      Absence.io REST API v2 allows seamless integration of absence management features into software applications.
-      Retrieve, create, update, and delete records for absences, users, allowances, departments, locations, reason
-      types, and timespans. All requests and responses use JSON format with Hawk authentication.
+- aid: absence-io:absence-io-absences-api
+  name: Absence.io Absences API
+  description: Operations for managing employee absence records.
+  humanURL: https://www.absence.io/
+  tags:
+  - Absences
+  properties:
+  - type: OpenAPI
+    url: openapi/absence-io-absences-api-openapi.yml
+  - type: Documentation
+    url: https://docs.absence.io/
+  - type: Authentication
+    url: https://docs.absence.io/#authentication
+  - type: SDKs
+    url: https://www.npmjs.com/package/absence.io
+  - type: JSONSchema
+    url: json-schema/absence-schema.json
+  - type: JSONSchema
+    url: json-schema/user-schema.json
+  - type: JSONSchema
+    url: json-schema/allowance-schema.json
+- aid: absence-io:absence-io-allowances-api
+  name: Absence.io Allowances API
+  description: Operations for managing employee leave allowances and balances.
+  humanURL: https://www.absence.io/
+  tags:
+  - Allowances
+  properties:
+  - type: OpenAPI
+    url: openapi/absence-io-allowances-api-openapi.yml
+  - type: Documentation
+    url: https://docs.absence.io/
+  - type: Authentication
+    url: https://docs.absence.io/#authentication
+  - type: SDKs
+    url: https://www.npmjs.com/package/absence.io
+  - type: JSONSchema
+    url: json-schema/absence-schema.json
+  - type: JSONSchema
+    url: json-schema/user-schema.json
+  - type: JSONSchema
+    url: json-schema/allowance-schema.json
+- aid: absence-io:absence-io-departments-api
+  name: Absence.io Departments API
+  description: Operations for retrieving organizational department information.
+  humanURL: https://www.absence.io/
+  tags:
+  - Departments
+  properties:
+  - type: OpenAPI
+    url: openapi/absence-io-departments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.absence.io/
+  - type: Authentication
+    url: https://docs.absence.io/#authentication
+  - type: SDKs
+    url: https://www.npmjs.com/package/absence.io
+  - type: JSONSchema
+    url: json-schema/absence-schema.json
+  - type: JSONSchema
+    url: json-schema/user-schema.json
+  - type: JSONSchema
+    url: json-schema/allowance-schema.json
+- aid: absence-io:absence-io-locations-api
+  name: Absence.io Locations API
+  description: Operations for retrieving office location information.
+  humanURL: https://www.absence.io/
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/absence-io-locations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.absence.io/
+  - type: Authentication
+    url: https://docs.absence.io/#authentication
+  - type: SDKs
+    url: https://www.npmjs.com/package/absence.io
+  - type: JSONSchema
+    url: json-schema/absence-schema.json
+  - type: JSONSchema
+    url: json-schema/user-schema.json
+  - type: JSONSchema
+    url: json-schema/allowance-schema.json
+- aid: absence-io:absence-io-reason-types-api
+  name: Absence.io Reason Types API
+  description: Operations for retrieving absence reason type definitions.
+  humanURL: https://www.absence.io/
+  tags:
+  - Reason Types
+  properties:
+  - type: OpenAPI
+    url: openapi/absence-io-reason-types-api-openapi.yml
+  - type: Documentation
+    url: https://docs.absence.io/
+  - type: Authentication
+    url: https://docs.absence.io/#authentication
+  - type: SDKs
+    url: https://www.npmjs.com/package/absence.io
+  - type: JSONSchema
+    url: json-schema/absence-schema.json
+  - type: JSONSchema
+    url: json-schema/user-schema.json
+  - type: JSONSchema
+    url: json-schema/allowance-schema.json
+- aid: absence-io:absence-io-timespans-api
+  name: Absence.io Timespans API
+  description: Operations for retrieving working time configurations.
+  humanURL: https://www.absence.io/
+  tags:
+  - Timespans
+  properties:
+  - type: OpenAPI
+    url: openapi/absence-io-timespans-api-openapi.yml
+  - type: Documentation
+    url: https://docs.absence.io/
+  - type: Authentication
+    url: https://docs.absence.io/#authentication
+  - type: SDKs
+    url: https://www.npmjs.com/package/absence.io
+  - type: JSONSchema
+    url: json-schema/absence-schema.json
+  - type: JSONSchema
+    url: json-schema/user-schema.json
+  - type: JSONSchema
+    url: json-schema/allowance-schema.json
+- aid: absence-io:absence-io-users-api
+  name: Absence.io Users API
+  description: Operations for retrieving user/employee information.
+  humanURL: https://www.absence.io/
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/absence-io-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.absence.io/
+  - type: Authentication
+    url: https://docs.absence.io/#authentication
+  - type: SDKs
+    url: https://www.npmjs.com/package/absence.io
+  - type: JSONSchema
+    url: json-schema/absence-schema.json
+  - type: JSONSchema
+    url: json-schema/user-schema.json
+  - type: JSONSchema
+    url: json-schema/allowance-schema.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/absenceio/overview
   - type: AgenticAccess
     url: agentic-access/absence-io-agentic-access.yml
   - type: DomainSecurity
