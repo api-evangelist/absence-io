@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "5a8cd2a1-ec10-4c0c-b6d1-3cc66ecfdc1e",
+    "name": "Absence.io Absences Locations API",
+    "description": "The Absence.io REST API allows integration with absence management features. With this API, users can retrieve, create, update, and delete information related to employee absences, allowances, users, departments, locations, and reason types. All requests and responses use JSON format. Authentication uses the Hawk authentication scheme with an API key generated from the Absence.io account settings under Integrations.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:38.000Z",
+    "updatedAt": "2026-07-28T00:27:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5a8cd2a1-ec10-4c0c-b6d1-3cc66ecfdc1e"
+  },
+  "item": [
+    {
+      "name": "locations",
+      "item": [
+        {
+          "name": "Absence.io List Locations",
+          "id": "5e51a62f-fdc2-4f40-a53e-be2cca3748d4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/locations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "locations"
+              ]
+            },
+            "description": "Retrieve a list of office locations in the organization."
+          },
+          "response": [
+            {
+              "id": "0c3cd225-3a46-4dc4-9197-cfa63b244d93",
+              "name": "Successful response with list of locations",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/locations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "locations"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T00:27:38.000Z",
+              "updatedAt": "2026-07-28T00:27:38.000Z",
+              "uid": "35240-0c3cd225-3a46-4dc4-9197-cfa63b244d93"
+            },
+            {
+              "id": "a04f63a3-4db2-4c84-9700-dc9c28c52733",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/locations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "locations"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T00:27:38.000Z",
+              "updatedAt": "2026-07-28T00:27:38.000Z",
+              "uid": "35240-a04f63a3-4db2-4c84-9700-dc9c28c52733"
+            }
+          ],
+          "createdAt": "2026-07-28T00:27:38.000Z",
+          "updatedAt": "2026-07-28T00:27:38.000Z",
+          "uid": "35240-5e51a62f-fdc2-4f40-a53e-be2cca3748d4"
+        }
+      ],
+      "id": "fa7e931c-b3b3-4391-8ab4-5d4cdccf3edf",
+      "createdAt": "2026-07-28T00:27:38.000Z",
+      "updatedAt": "2026-07-28T00:27:38.000Z",
+      "uid": "35240-fa7e931c-b3b3-4391-8ab4-5d4cdccf3edf"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.absence.io/api/v2"
+    }
+  ]
+}

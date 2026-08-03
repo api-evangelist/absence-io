@@ -1,0 +1,354 @@
+{
+  "info": {
+    "_postman_id": "fa6c5dc7-8013-4ac9-88dd-9b0bef209ee6",
+    "name": "Absence.io Absences Users API",
+    "description": "The Absence.io REST API allows integration with absence management features. With this API, users can retrieve, create, update, and delete information related to employee absences, allowances, users, departments, locations, and reason types. All requests and responses use JSON format. Authentication uses the Hawk authentication scheme with an API key generated from the Absence.io account settings under Integrations.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:41.000Z",
+    "updatedAt": "2026-07-28T00:27:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fa6c5dc7-8013-4ac9-88dd-9b0bef209ee6"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Absence.io Get User",
+              "id": "7724a827-0f9c-4047-8301-a86dd81702f1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1cf67f37-6d34-4add-af72-7244319f6d68",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the user."
+                    }
+                  ]
+                },
+                "description": "Retrieve a specific user record by their unique identifier."
+              },
+              "response": [
+                {
+                  "id": "30d62bdb-06b8-4670-a71a-d32d23a88c27",
+                  "name": "Successful response with user details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"departmentId\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"teamId\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"language\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T00:27:41.000Z",
+                  "updatedAt": "2026-07-28T00:27:41.000Z",
+                  "uid": "35240-30d62bdb-06b8-4670-a71a-d32d23a88c27"
+                },
+                {
+                  "id": "510c3656-0034-42a8-919d-51e3fc3c6425",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T00:27:41.000Z",
+                  "updatedAt": "2026-07-28T00:27:41.000Z",
+                  "uid": "35240-510c3656-0034-42a8-919d-51e3fc3c6425"
+                },
+                {
+                  "id": "67a1278b-c566-476e-8435-0af8977b99cf",
+                  "name": "User not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T00:27:41.000Z",
+                  "updatedAt": "2026-07-28T00:27:41.000Z",
+                  "uid": "35240-67a1278b-c566-476e-8435-0af8977b99cf"
+                }
+              ],
+              "createdAt": "2026-07-28T00:27:41.000Z",
+              "updatedAt": "2026-07-28T00:27:41.000Z",
+              "uid": "35240-7724a827-0f9c-4047-8301-a86dd81702f1"
+            }
+          ],
+          "id": "3affb7f7-2ec8-4903-a633-7ab46af5b3a6",
+          "createdAt": "2026-07-28T00:27:41.000Z",
+          "updatedAt": "2026-07-28T00:27:41.000Z",
+          "uid": "35240-3affb7f7-2ec8-4903-a633-7ab46af5b3a6"
+        },
+        {
+          "name": "Absence.io List Users",
+          "id": "612157ed-fe81-4233-b777-d656bed3fc8f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "Retrieve a paginated list of users in the organization with optional filters."
+          },
+          "response": [
+            {
+              "id": "552f16d9-1661-4b5d-83e6-285ec04612d3",
+              "name": "Successful response with list of users",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"departmentId\": \"<string>\",\n      \"locationId\": \"<string>\",\n      \"teamId\": \"<string>\",\n      \"status\": \"<integer>\",\n      \"language\": \"<string>\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"departmentId\": \"<string>\",\n      \"locationId\": \"<string>\",\n      \"teamId\": \"<string>\",\n      \"status\": \"<integer>\",\n      \"language\": \"<string>\"\n    }\n  ],\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T00:27:41.000Z",
+              "updatedAt": "2026-07-28T00:27:41.000Z",
+              "uid": "35240-552f16d9-1661-4b5d-83e6-285ec04612d3"
+            },
+            {
+              "id": "b65d0441-8b39-44cb-9bff-ab5d1c7da1f9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T00:27:41.000Z",
+              "updatedAt": "2026-07-28T00:27:41.000Z",
+              "uid": "35240-b65d0441-8b39-44cb-9bff-ab5d1c7da1f9"
+            }
+          ],
+          "createdAt": "2026-07-28T00:27:41.000Z",
+          "updatedAt": "2026-07-28T00:27:41.000Z",
+          "uid": "35240-612157ed-fe81-4233-b777-d656bed3fc8f"
+        }
+      ],
+      "id": "47667360-848b-4ed6-b56c-0d4a1401e9bf",
+      "createdAt": "2026-07-28T00:27:41.000Z",
+      "updatedAt": "2026-07-28T00:27:41.000Z",
+      "uid": "35240-47667360-848b-4ed6-b56c-0d4a1401e9bf"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.absence.io/api/v2"
+    }
+  ]
+}

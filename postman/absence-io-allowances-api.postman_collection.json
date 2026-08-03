@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "b12a9d4c-c1e1-4bff-946b-40e3f00dcf56",
+    "name": "Absence.io Absences Allowances API",
+    "description": "The Absence.io REST API allows integration with absence management features. With this API, users can retrieve, create, update, and delete information related to employee absences, allowances, users, departments, locations, and reason types. All requests and responses use JSON format. Authentication uses the Hawk authentication scheme with an API key generated from the Absence.io account settings under Integrations.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:36.000Z",
+    "updatedAt": "2026-07-28T00:27:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b12a9d4c-c1e1-4bff-946b-40e3f00dcf56"
+  },
+  "item": [
+    {
+      "name": "allowances",
+      "item": [
+        {
+          "name": "Absence.io List Allowances",
+          "id": "5a8689de-379b-41e2-a183-0ea036b74aef",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/allowances",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "allowances"
+              ]
+            },
+            "description": "Retrieve a paginated list of employee leave allowances with optional filters."
+          },
+          "response": [
+            {
+              "id": "a6c6c716-e0da-4e68-bb76-87cf44bc58af",
+              "name": "Successful response with list of allowances",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/allowances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "allowances"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"_id\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"reasonId\": \"<string>\",\n      \"year\": \"<integer>\",\n      \"allowance\": \"<number>\",\n      \"used\": \"<number>\",\n      \"remaining\": \"<number>\",\n      \"carryover\": \"<number>\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"reasonId\": \"<string>\",\n      \"year\": \"<integer>\",\n      \"allowance\": \"<number>\",\n      \"used\": \"<number>\",\n      \"remaining\": \"<number>\",\n      \"carryover\": \"<number>\"\n    }\n  ],\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T00:27:37.000Z",
+              "updatedAt": "2026-07-28T00:27:37.000Z",
+              "uid": "35240-a6c6c716-e0da-4e68-bb76-87cf44bc58af"
+            },
+            {
+              "id": "a1bdbc8d-b5de-4344-9903-1a04e9c03d44",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/allowances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "allowances"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T00:27:37.000Z",
+              "updatedAt": "2026-07-28T00:27:37.000Z",
+              "uid": "35240-a1bdbc8d-b5de-4344-9903-1a04e9c03d44"
+            }
+          ],
+          "createdAt": "2026-07-28T00:27:37.000Z",
+          "updatedAt": "2026-07-28T00:27:37.000Z",
+          "uid": "35240-5a8689de-379b-41e2-a183-0ea036b74aef"
+        }
+      ],
+      "id": "d5755e81-c844-4cc1-b8e0-95253609698d",
+      "createdAt": "2026-07-28T00:27:37.000Z",
+      "updatedAt": "2026-07-28T00:27:37.000Z",
+      "uid": "35240-d5755e81-c844-4cc1-b8e0-95253609698d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.absence.io/api/v2"
+    }
+  ]
+}

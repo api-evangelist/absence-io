@@ -1,0 +1,1095 @@
+openapi: 3.1.0
+info:
+  title: Absence.io API
+  description: >-
+    The Absence.io REST API allows integration with absence management features.
+    With this API, users can retrieve, create, update, and delete information related
+    to employee absences, allowances, users, departments, locations, and reason types.
+    All requests and responses use JSON format. Authentication uses the Hawk authentication
+    scheme with an API key generated from the Absence.io account settings under Integrations.
+  version: 2.0.0
+  contact:
+    url: https://www.absence.io/contact
+  license:
+    name: Proprietary
+    url: https://www.absence.io/terms-and-conditions/
+  x-generated-from: documentation
+servers:
+  - url: https://app.absence.io/api/v2
+    description: Production server
+paths:
+  /absences:
+    post:
+      operationId: listAbsences
+      summary: Absence.io List Absences
+      description: Retrieve a paginated list of employee absences with optional filters and related data resolution.
+      tags:
+        - Absences
+      security:
+        - HawkAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListRequest'
+            examples:
+              ListAbsencesRequestExample:
+                summary: Default listAbsences request
+                x-microcks-default: true
+                value:
+                  skip: 0
+                  limit: 50
+                  filter:
+                    start:
+                      $gte: '2025-01-01T00:00:00.000Z'
+                      $lte: '2025-12-31T23:59:59.999Z'
+                  relations:
+                    - assignedToId
+                    - reasonId
+                    - approverId
+      responses:
+        '200':
+          description: Successful response with list of absences
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbsenceListResponse'
+              examples:
+                ListAbsences200Example:
+                  summary: Default listAbsences 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - _id: '500123'
+                        start: '2025-06-01T00:00:00.000Z'
+                        end: '2025-06-05T23:59:59.999Z'
+                        assignedToId: '500456'
+                        reasonId: '500789'
+                        status: 1
+                        days: 5
+                    skip: 0
+                    limit: 50
+                    count: 1
+        '401':
+          description: Unauthorized - invalid or missing Hawk credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /absences/{id}:
+    get:
+      operationId: getAbsence
+      summary: Absence.io Get Absence
+      description: Retrieve a specific absence record by its unique identifier.
+      tags:
+        - Absences
+      security:
+        - HawkAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the absence record.
+          schema:
+            type: string
+            example: '500123'
+      responses:
+        '200':
+          description: Successful response with absence details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Absence'
+              examples:
+                GetAbsence200Example:
+                  summary: Default getAbsence 200 response
+                  x-microcks-default: true
+                  value:
+                    _id: '500123'
+                    start: '2025-06-01T00:00:00.000Z'
+                    end: '2025-06-05T23:59:59.999Z'
+                    assignedToId: '500456'
+                    reasonId: '500789'
+                    status: 1
+                    days: 5
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Absence not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateAbsence
+      summary: Absence.io Update Absence
+      description: Update an existing absence record by its unique identifier.
+      tags:
+        - Absences
+      security:
+        - HawkAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the absence record.
+          schema:
+            type: string
+            example: '500123'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AbsenceInput'
+            examples:
+              UpdateAbsenceRequestExample:
+                summary: Default updateAbsence request
+                x-microcks-default: true
+                value:
+                  start: '2025-06-02T00:00:00.000Z'
+                  end: '2025-06-06T23:59:59.999Z'
+                  reasonId: '500789'
+      responses:
+        '200':
+          description: Absence updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Absence'
+              examples:
+                UpdateAbsence200Example:
+                  summary: Default updateAbsence 200 response
+                  x-microcks-default: true
+                  value:
+                    _id: '500123'
+                    start: '2025-06-02T00:00:00.000Z'
+                    end: '2025-06-06T23:59:59.999Z'
+                    assignedToId: '500456'
+                    reasonId: '500789'
+                    status: 1
+                    days: 5
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Absence not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteAbsence
+      summary: Absence.io Delete Absence
+      description: Delete an absence record by its unique identifier.
+      tags:
+        - Absences
+      security:
+        - HawkAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the absence record.
+          schema:
+            type: string
+            example: '500123'
+      responses:
+        '200':
+          description: Absence deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+              examples:
+                DeleteAbsence200Example:
+                  summary: Default deleteAbsence 200 response
+                  x-microcks-default: true
+                  value:
+                    success: true
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Absence not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /absences/create:
+    post:
+      operationId: createAbsence
+      summary: Absence.io Create Absence
+      description: Create a new absence record for an employee.
+      tags:
+        - Absences
+      security:
+        - HawkAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AbsenceInput'
+            examples:
+              CreateAbsenceRequestExample:
+                summary: Default createAbsence request
+                x-microcks-default: true
+                value:
+                  assignedToId: '500456'
+                  start: '2025-06-01T00:00:00.000Z'
+                  end: '2025-06-05T23:59:59.999Z'
+                  reasonId: '500789'
+                  comment: Annual leave
+      responses:
+        '200':
+          description: Absence created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Absence'
+              examples:
+                CreateAbsence200Example:
+                  summary: Default createAbsence 200 response
+                  x-microcks-default: true
+                  value:
+                    _id: '500123'
+                    start: '2025-06-01T00:00:00.000Z'
+                    end: '2025-06-05T23:59:59.999Z'
+                    assignedToId: '500456'
+                    reasonId: '500789'
+                    status: 0
+                    days: 5
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /users:
+    post:
+      operationId: listUsers
+      summary: Absence.io List Users
+      description: Retrieve a paginated list of users in the organization with optional filters.
+      tags:
+        - Users
+      security:
+        - HawkAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListRequest'
+            examples:
+              ListUsersRequestExample:
+                summary: Default listUsers request
+                x-microcks-default: true
+                value:
+                  skip: 0
+                  limit: 50
+      responses:
+        '200':
+          description: Successful response with list of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+              examples:
+                ListUsers200Example:
+                  summary: Default listUsers 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - _id: '500456'
+                        name: Jane Smith
+                        email: jsmith@example.com
+                        departmentId: '500999'
+                        status: 1
+                    skip: 0
+                    limit: 50
+                    count: 1
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /users/{id}:
+    get:
+      operationId: getUser
+      summary: Absence.io Get User
+      description: Retrieve a specific user record by their unique identifier.
+      tags:
+        - Users
+      security:
+        - HawkAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the user.
+          schema:
+            type: string
+            example: '500456'
+      responses:
+        '200':
+          description: Successful response with user details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                GetUser200Example:
+                  summary: Default getUser 200 response
+                  x-microcks-default: true
+                  value:
+                    _id: '500456'
+                    name: Jane Smith
+                    email: jsmith@example.com
+                    departmentId: '500999'
+                    locationId: '500888'
+                    status: 1
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /allowances:
+    post:
+      operationId: listAllowances
+      summary: Absence.io List Allowances
+      description: Retrieve a paginated list of employee leave allowances with optional filters.
+      tags:
+        - Allowances
+      security:
+        - HawkAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListRequest'
+            examples:
+              ListAllowancesRequestExample:
+                summary: Default listAllowances request
+                x-microcks-default: true
+                value:
+                  skip: 0
+                  limit: 50
+      responses:
+        '200':
+          description: Successful response with list of allowances
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllowanceListResponse'
+              examples:
+                ListAllowances200Example:
+                  summary: Default listAllowances 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - _id: '500234'
+                        userId: '500456'
+                        reasonId: '500789'
+                        year: 2025
+                        allowance: 25
+                        used: 10
+                        remaining: 15
+                    skip: 0
+                    limit: 50
+                    count: 1
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /departments:
+    post:
+      operationId: listDepartments
+      summary: Absence.io List Departments
+      description: Retrieve a list of departments in the organization.
+      tags:
+        - Departments
+      security:
+        - HawkAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListRequest'
+            examples:
+              ListDepartmentsRequestExample:
+                summary: Default listDepartments request
+                x-microcks-default: true
+                value:
+                  skip: 0
+                  limit: 50
+      responses:
+        '200':
+          description: Successful response with list of departments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepartmentListResponse'
+              examples:
+                ListDepartments200Example:
+                  summary: Default listDepartments 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - _id: '500999'
+                        name: Engineering
+                        managerId: '500456'
+                    skip: 0
+                    limit: 50
+                    count: 1
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /locations:
+    post:
+      operationId: listLocations
+      summary: Absence.io List Locations
+      description: Retrieve a list of office locations in the organization.
+      tags:
+        - Locations
+      security:
+        - HawkAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListRequest'
+            examples:
+              ListLocationsRequestExample:
+                summary: Default listLocations request
+                x-microcks-default: true
+                value:
+                  skip: 0
+                  limit: 50
+      responses:
+        '200':
+          description: Successful response with list of locations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationListResponse'
+              examples:
+                ListLocations200Example:
+                  summary: Default listLocations 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - _id: '500888'
+                        name: HQ-SanFrancisco
+                        timezone: America/Los_Angeles
+                    skip: 0
+                    limit: 50
+                    count: 1
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reasontypes:
+    post:
+      operationId: listReasonTypes
+      summary: Absence.io List Reason Types
+      description: Retrieve a list of absence reason types defined in the organization (e.g., vacation, sick leave, parental leave).
+      tags:
+        - Reason Types
+      security:
+        - HawkAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListRequest'
+            examples:
+              ListReasonTypesRequestExample:
+                summary: Default listReasonTypes request
+                x-microcks-default: true
+                value:
+                  skip: 0
+                  limit: 50
+      responses:
+        '200':
+          description: Successful response with list of reason types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReasonTypeListResponse'
+              examples:
+                ListReasonTypes200Example:
+                  summary: Default listReasonTypes 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - _id: '500789'
+                        name: Vacation
+                        color: '#4CAF50'
+                        requiresApproval: true
+                    skip: 0
+                    limit: 50
+                    count: 1
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /timespans:
+    post:
+      operationId: listTimespans
+      summary: Absence.io List Timespans
+      description: Retrieve a list of working time configurations and schedules.
+      tags:
+        - Timespans
+      security:
+        - HawkAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListRequest'
+            examples:
+              ListTimespansRequestExample:
+                summary: Default listTimespans request
+                x-microcks-default: true
+                value:
+                  skip: 0
+                  limit: 50
+      responses:
+        '200':
+          description: Successful response with list of timespans
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimespanListResponse'
+              examples:
+                ListTimespans200Example:
+                  summary: Default listTimespans 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - _id: '500567'
+                        name: Standard Work Week
+                        hoursPerDay: 8
+                        daysPerWeek: 5
+                    skip: 0
+                    limit: 50
+                    count: 1
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    HawkAuth:
+      type: http
+      scheme: hawk
+      description: >-
+        Hawk authentication using an API key ID and API key. Generate your API key
+        from your absence.io account profile under the Integrations tab. Use the
+        @hapi/hawk library to generate the Authorization header with SHA256 algorithm.
+  schemas:
+    ListRequest:
+      title: ListRequest
+      description: Common request body for list operations with pagination and filtering.
+      type: object
+      properties:
+        skip:
+          type: integer
+          description: Number of records to skip for pagination.
+          example: 0
+        limit:
+          type: integer
+          description: Maximum number of records to return per page.
+          example: 50
+        filter:
+          type: object
+          description: MongoDB-style filter object. Supports operators like $gte, $lte, $eq.
+          example:
+            start:
+              $gte: '2025-01-01T00:00:00.000Z'
+        relations:
+          type: array
+          description: List of related fields to resolve (dereference IDs to full objects).
+          items:
+            type: string
+          example:
+            - assignedToId
+            - reasonId
+    Absence:
+      title: Absence
+      description: An employee absence record.
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the absence.
+          example: '500123'
+        assignedToId:
+          type: string
+          description: ID of the user this absence is assigned to.
+          example: '500456'
+        reasonId:
+          type: string
+          description: ID of the absence reason type.
+          example: '500789'
+        approverId:
+          type: string
+          description: ID of the user who approved this absence.
+          example: '500654'
+        start:
+          type: string
+          format: date-time
+          description: Start date and time of the absence.
+          example: '2025-06-01T00:00:00.000Z'
+        end:
+          type: string
+          format: date-time
+          description: End date and time of the absence.
+          example: '2025-06-05T23:59:59.999Z'
+        days:
+          type: number
+          description: Number of working days covered by the absence.
+          example: 5
+        status:
+          type: integer
+          description: "Absence approval status: 0=pending, 1=approved, 2=declined."
+          example: 1
+        comment:
+          type: string
+          description: Optional comment or note on the absence.
+          example: Annual leave
+    AbsenceInput:
+      title: AbsenceInput
+      description: Request body for creating or updating an absence record.
+      type: object
+      properties:
+        assignedToId:
+          type: string
+          description: ID of the user this absence is for.
+          example: '500456'
+        reasonId:
+          type: string
+          description: ID of the absence reason type.
+          example: '500789'
+        start:
+          type: string
+          format: date-time
+          description: Start date and time of the absence.
+          example: '2025-06-01T00:00:00.000Z'
+        end:
+          type: string
+          format: date-time
+          description: End date and time of the absence.
+          example: '2025-06-05T23:59:59.999Z'
+        comment:
+          type: string
+          description: Optional comment or note on the absence.
+          example: Annual leave
+    AbsenceListResponse:
+      title: AbsenceListResponse
+      description: Paginated list response containing absence records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of absence records.
+          items:
+            $ref: '#/components/schemas/Absence'
+        skip:
+          type: integer
+          description: Number of records skipped.
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page.
+          example: 50
+        count:
+          type: integer
+          description: Total count of matching records.
+          example: 25
+    User:
+      title: User
+      description: An employee user record.
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the user.
+          example: '500456'
+        name:
+          type: string
+          description: Full name of the user.
+          example: Jane Smith
+        email:
+          type: string
+          format: email
+          description: Email address of the user.
+          example: jsmith@example.com
+        departmentId:
+          type: string
+          description: ID of the department the user belongs to.
+          example: '500999'
+        locationId:
+          type: string
+          description: ID of the location the user is assigned to.
+          example: '500888'
+        teamId:
+          type: string
+          description: ID of the team the user belongs to.
+          example: '500111'
+        status:
+          type: integer
+          description: "User status: 1=active, 0=inactive."
+          example: 1
+        language:
+          type: string
+          description: User's preferred language code.
+          example: en
+    UserListResponse:
+      title: UserListResponse
+      description: Paginated list response containing user records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of user records.
+          items:
+            $ref: '#/components/schemas/User'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 100
+    Allowance:
+      title: Allowance
+      description: An employee leave allowance record for a specific reason type and year.
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the allowance.
+          example: '500234'
+        userId:
+          type: string
+          description: ID of the user this allowance belongs to.
+          example: '500456'
+        reasonId:
+          type: string
+          description: ID of the absence reason type this allowance is for.
+          example: '500789'
+        year:
+          type: integer
+          description: Calendar year this allowance applies to.
+          example: 2025
+        allowance:
+          type: number
+          description: Total number of days allowed.
+          example: 25
+        used:
+          type: number
+          description: Number of days used.
+          example: 10
+        remaining:
+          type: number
+          description: Number of days remaining.
+          example: 15
+        carryover:
+          type: number
+          description: Number of days carried over from the previous year.
+          example: 0
+    AllowanceListResponse:
+      title: AllowanceListResponse
+      description: Paginated list response containing allowance records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of allowance records.
+          items:
+            $ref: '#/components/schemas/Allowance'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 50
+    Department:
+      title: Department
+      description: An organizational department.
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the department.
+          example: '500999'
+        name:
+          type: string
+          description: Name of the department.
+          example: Engineering
+        managerId:
+          type: string
+          description: ID of the department manager.
+          example: '500456'
+        parentId:
+          type: string
+          description: ID of the parent department if hierarchical.
+          example: '500000'
+    DepartmentListResponse:
+      title: DepartmentListResponse
+      description: Paginated list response containing department records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of department records.
+          items:
+            $ref: '#/components/schemas/Department'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 10
+    Location:
+      title: Location
+      description: An office or work location.
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the location.
+          example: '500888'
+        name:
+          type: string
+          description: Name of the location.
+          example: HQ-SanFrancisco
+        timezone:
+          type: string
+          description: Timezone identifier for this location.
+          example: America/Los_Angeles
+        country:
+          type: string
+          description: Country code for the location.
+          example: US
+    LocationListResponse:
+      title: LocationListResponse
+      description: Paginated list response containing location records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of location records.
+          items:
+            $ref: '#/components/schemas/Location'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 5
+    ReasonType:
+      title: ReasonType
+      description: An absence reason type (e.g., vacation, sick leave, parental leave).
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the reason type.
+          example: '500789'
+        name:
+          type: string
+          description: Display name of the absence reason.
+          example: Vacation
+        color:
+          type: string
+          description: Color code for displaying this absence type in the calendar.
+          example: '#4CAF50'
+        requiresApproval:
+          type: boolean
+          description: Whether absences of this type require manager approval.
+          example: true
+        affectsAllowance:
+          type: boolean
+          description: Whether absences of this type count against the employee's allowance.
+          example: true
+    ReasonTypeListResponse:
+      title: ReasonTypeListResponse
+      description: Paginated list response containing reason type records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of reason type records.
+          items:
+            $ref: '#/components/schemas/ReasonType'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 8
+    Timespan:
+      title: Timespan
+      description: A working time configuration defining work hours and schedule.
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the timespan.
+          example: '500567'
+        name:
+          type: string
+          description: Name of the working time configuration.
+          example: Standard Work Week
+        hoursPerDay:
+          type: number
+          description: Number of working hours per day.
+          example: 8
+        daysPerWeek:
+          type: integer
+          description: Number of working days per week.
+          example: 5
+    TimespanListResponse:
+      title: TimespanListResponse
+      description: Paginated list response containing timespan records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of timespan records.
+          items:
+            $ref: '#/components/schemas/Timespan'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 3
+    SuccessResponse:
+      title: SuccessResponse
+      description: Generic success response.
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the operation was successful.
+          example: true
+    Error:
+      title: Error
+      description: Error response returned when a request fails.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message describing what went wrong.
+          example: Unauthorized
+        statusCode:
+          type: integer
+          description: HTTP status code.
+          example: 401
+tags:
+  - name: Absences
+    description: Operations for managing employee absence records.
+  - name: Users
+    description: Operations for retrieving user/employee information.
+  - name: Allowances
+    description: Operations for managing employee leave allowances and balances.
+  - name: Departments
+    description: Operations for retrieving organizational department information.
+  - name: Locations
+    description: Operations for retrieving office location information.
+  - name: Reason Types
+    description: Operations for retrieving absence reason type definitions.
+  - name: Timespans
+    description: Operations for retrieving working time configurations.

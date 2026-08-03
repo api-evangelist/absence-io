@@ -1,0 +1,907 @@
+{
+  "info": {
+    "_postman_id": "79946aeb-ab5f-4f2c-b69a-c163af284d41",
+    "name": "Absence.io Absences API",
+    "description": "The Absence.io REST API allows integration with absence management features. With this API, users can retrieve, create, update, and delete information related to employee absences, allowances, users, departments, locations, and reason types. All requests and responses use JSON format. Authentication uses the Hawk authentication scheme with an API key generated from the Absence.io account settings under Integrations.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:35.000Z",
+    "updatedAt": "2026-07-28T00:27:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-79946aeb-ab5f-4f2c-b69a-c163af284d41"
+  },
+  "item": [
+    {
+      "name": "absences",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Absence.io Get Absence",
+              "id": "18a80e67-efe7-4dd3-8d31-4536d90c0cc4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/absences/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "absences",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "de24d27e-ac62-45b4-bc98-cc621a28e3aa",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the absence record."
+                    }
+                  ]
+                },
+                "description": "Retrieve a specific absence record by its unique identifier."
+              },
+              "response": [
+                {
+                  "id": "1315d113-9f0f-4a24-9d7f-5cb8d18c7ee5",
+                  "name": "Successful response with absence details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/absences/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "absences",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_id\": \"<string>\",\n  \"assignedToId\": \"<string>\",\n  \"reasonId\": \"<string>\",\n  \"approverId\": \"<string>\",\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"days\": \"<number>\",\n  \"status\": \"<integer>\",\n  \"comment\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T00:27:36.000Z",
+                  "updatedAt": "2026-07-28T00:27:36.000Z",
+                  "uid": "35240-1315d113-9f0f-4a24-9d7f-5cb8d18c7ee5"
+                },
+                {
+                  "id": "ccac0705-db3a-47e3-b34d-d6a0a40853c1",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/absences/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "absences",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T00:27:36.000Z",
+                  "updatedAt": "2026-07-28T00:27:36.000Z",
+                  "uid": "35240-ccac0705-db3a-47e3-b34d-d6a0a40853c1"
+                },
+                {
+                  "id": "255352e9-6076-46d1-8c77-eef362202944",
+                  "name": "Absence not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/absences/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "absences",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T00:27:36.000Z",
+                  "updatedAt": "2026-07-28T00:27:36.000Z",
+                  "uid": "35240-255352e9-6076-46d1-8c77-eef362202944"
+                }
+              ],
+              "createdAt": "2026-07-28T00:27:36.000Z",
+              "updatedAt": "2026-07-28T00:27:36.000Z",
+              "uid": "35240-18a80e67-efe7-4dd3-8d31-4536d90c0cc4"
+            },
+            {
+              "name": "Absence.io Update Absence",
+              "id": "152d5325-9309-402c-a1a0-a4cadf0cdbe5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assignedToId\": \"<string>\",\n  \"reasonId\": \"<string>\",\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/absences/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "absences",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "62da237c-81c2-4543-a13b-1e296123f577",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the absence record."
+                    }
+                  ]
+                },
+                "description": "Update an existing absence record by its unique identifier."
+              },
+              "response": [
+                {
+                  "id": "9daa999d-fc41-4107-9f9a-655f413d5205",
+                  "name": "Absence updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"assignedToId\": \"<string>\",\n  \"reasonId\": \"<string>\",\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/absences/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "absences",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_id\": \"<string>\",\n  \"assignedToId\": \"<string>\",\n  \"reasonId\": \"<string>\",\n  \"approverId\": \"<string>\",\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"days\": \"<number>\",\n  \"status\": \"<integer>\",\n  \"comment\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T00:27:36.000Z",
+                  "updatedAt": "2026-07-28T00:27:36.000Z",
+                  "uid": "35240-9daa999d-fc41-4107-9f9a-655f413d5205"
+                },
+                {
+                  "id": "61e3f88a-8b0e-495a-8c53-6ff192c4cb66",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"assignedToId\": \"<string>\",\n  \"reasonId\": \"<string>\",\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/absences/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "absences",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T00:27:36.000Z",
+                  "updatedAt": "2026-07-28T00:27:36.000Z",
+                  "uid": "35240-61e3f88a-8b0e-495a-8c53-6ff192c4cb66"
+                },
+                {
+                  "id": "ae0b561a-7dc4-474e-bf9c-f510107a0c87",
+                  "name": "Absence not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"assignedToId\": \"<string>\",\n  \"reasonId\": \"<string>\",\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/absences/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "absences",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T00:27:36.000Z",
+                  "updatedAt": "2026-07-28T00:27:36.000Z",
+                  "uid": "35240-ae0b561a-7dc4-474e-bf9c-f510107a0c87"
+                }
+              ],
+              "createdAt": "2026-07-28T00:27:36.000Z",
+              "updatedAt": "2026-07-28T00:27:36.000Z",
+              "uid": "35240-152d5325-9309-402c-a1a0-a4cadf0cdbe5"
+            },
+            {
+              "name": "Absence.io Delete Absence",
+              "id": "54d2289d-1e09-480d-8aab-a10518f6741c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/absences/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "absences",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9d21d219-9113-44a2-981e-b57fb1e7ad9b",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the absence record."
+                    }
+                  ]
+                },
+                "description": "Delete an absence record by its unique identifier."
+              },
+              "response": [
+                {
+                  "id": "6eeaab79-c602-4686-af06-ab735096dc7e",
+                  "name": "Absence deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/absences/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "absences",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T00:27:36.000Z",
+                  "updatedAt": "2026-07-28T00:27:36.000Z",
+                  "uid": "35240-6eeaab79-c602-4686-af06-ab735096dc7e"
+                },
+                {
+                  "id": "266216a3-4728-4d3f-a1c8-6d4d72cde86a",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/absences/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "absences",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T00:27:36.000Z",
+                  "updatedAt": "2026-07-28T00:27:36.000Z",
+                  "uid": "35240-266216a3-4728-4d3f-a1c8-6d4d72cde86a"
+                },
+                {
+                  "id": "79573899-5b46-4736-920b-8a6025aaa45b",
+                  "name": "Absence not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/absences/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "absences",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T00:27:36.000Z",
+                  "updatedAt": "2026-07-28T00:27:36.000Z",
+                  "uid": "35240-79573899-5b46-4736-920b-8a6025aaa45b"
+                }
+              ],
+              "createdAt": "2026-07-28T00:27:36.000Z",
+              "updatedAt": "2026-07-28T00:27:36.000Z",
+              "uid": "35240-54d2289d-1e09-480d-8aab-a10518f6741c"
+            }
+          ],
+          "id": "94ba4996-e78c-4a8c-bcdd-b7080170c757",
+          "createdAt": "2026-07-28T00:27:36.000Z",
+          "updatedAt": "2026-07-28T00:27:36.000Z",
+          "uid": "35240-94ba4996-e78c-4a8c-bcdd-b7080170c757"
+        },
+        {
+          "name": "create",
+          "item": [
+            {
+              "name": "Absence.io Create Absence",
+              "id": "247e892a-0b6e-45bd-bdbb-7cd0665d4953",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assignedToId\": \"<string>\",\n  \"reasonId\": \"<string>\",\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/absences/create",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "absences",
+                    "create"
+                  ]
+                },
+                "description": "Create a new absence record for an employee."
+              },
+              "response": [
+                {
+                  "id": "cf537e08-9d47-400f-9fa4-4f2f31531fe6",
+                  "name": "Absence created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"assignedToId\": \"<string>\",\n  \"reasonId\": \"<string>\",\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/absences/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "absences",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_id\": \"<string>\",\n  \"assignedToId\": \"<string>\",\n  \"reasonId\": \"<string>\",\n  \"approverId\": \"<string>\",\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"days\": \"<number>\",\n  \"status\": \"<integer>\",\n  \"comment\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T00:27:36.000Z",
+                  "updatedAt": "2026-07-28T00:27:36.000Z",
+                  "uid": "35240-cf537e08-9d47-400f-9fa4-4f2f31531fe6"
+                },
+                {
+                  "id": "ea2a9806-e74e-40bc-aad5-700df12e1871",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"assignedToId\": \"<string>\",\n  \"reasonId\": \"<string>\",\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/absences/create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "absences",
+                        "create"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T00:27:36.000Z",
+                  "updatedAt": "2026-07-28T00:27:36.000Z",
+                  "uid": "35240-ea2a9806-e74e-40bc-aad5-700df12e1871"
+                }
+              ],
+              "createdAt": "2026-07-28T00:27:36.000Z",
+              "updatedAt": "2026-07-28T00:27:36.000Z",
+              "uid": "35240-247e892a-0b6e-45bd-bdbb-7cd0665d4953"
+            }
+          ],
+          "id": "ac95a75e-97cb-4762-b28b-48fef63fb400",
+          "createdAt": "2026-07-28T00:27:36.000Z",
+          "updatedAt": "2026-07-28T00:27:36.000Z",
+          "uid": "35240-ac95a75e-97cb-4762-b28b-48fef63fb400"
+        },
+        {
+          "name": "Absence.io List Absences",
+          "id": "51ecbaaf-7ccd-4dcc-9556-f04f8dd84fa0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/absences",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "absences"
+              ]
+            },
+            "description": "Retrieve a paginated list of employee absences with optional filters and related data resolution."
+          },
+          "response": [
+            {
+              "id": "ded79ff4-b52c-426a-b3fa-62049e59a33a",
+              "name": "Successful response with list of absences",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/absences",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "absences"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"_id\": \"<string>\",\n      \"assignedToId\": \"<string>\",\n      \"reasonId\": \"<string>\",\n      \"approverId\": \"<string>\",\n      \"start\": \"<dateTime>\",\n      \"end\": \"<dateTime>\",\n      \"days\": \"<number>\",\n      \"status\": \"<integer>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"assignedToId\": \"<string>\",\n      \"reasonId\": \"<string>\",\n      \"approverId\": \"<string>\",\n      \"start\": \"<dateTime>\",\n      \"end\": \"<dateTime>\",\n      \"days\": \"<number>\",\n      \"status\": \"<integer>\",\n      \"comment\": \"<string>\"\n    }\n  ],\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T00:27:36.000Z",
+              "updatedAt": "2026-07-28T00:27:36.000Z",
+              "uid": "35240-ded79ff4-b52c-426a-b3fa-62049e59a33a"
+            },
+            {
+              "id": "b8a50597-4815-492b-9a28-25d38600883c",
+              "name": "Unauthorized - invalid or missing Hawk credentials",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/absences",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "absences"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T00:27:36.000Z",
+              "updatedAt": "2026-07-28T00:27:36.000Z",
+              "uid": "35240-b8a50597-4815-492b-9a28-25d38600883c"
+            }
+          ],
+          "createdAt": "2026-07-28T00:27:36.000Z",
+          "updatedAt": "2026-07-28T00:27:36.000Z",
+          "uid": "35240-51ecbaaf-7ccd-4dcc-9556-f04f8dd84fa0"
+        }
+      ],
+      "id": "3e87f1f3-a9a5-44e0-88f3-e6ae6c37d6f5",
+      "createdAt": "2026-07-28T00:27:36.000Z",
+      "updatedAt": "2026-07-28T00:27:36.000Z",
+      "uid": "35240-3e87f1f3-a9a5-44e0-88f3-e6ae6c37d6f5"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.absence.io/api/v2"
+    }
+  ]
+}

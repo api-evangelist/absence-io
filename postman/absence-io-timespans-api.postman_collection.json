@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "0b994547-6bb9-404c-af8c-de4e032bccf1",
+    "name": "Absence.io Absences Timespans API",
+    "description": "The Absence.io REST API allows integration with absence management features. With this API, users can retrieve, create, update, and delete information related to employee absences, allowances, users, departments, locations, and reason types. All requests and responses use JSON format. Authentication uses the Hawk authentication scheme with an API key generated from the Absence.io account settings under Integrations.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:40.000Z",
+    "updatedAt": "2026-07-28T00:27:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0b994547-6bb9-404c-af8c-de4e032bccf1"
+  },
+  "item": [
+    {
+      "name": "timespans",
+      "item": [
+        {
+          "name": "Absence.io List Timespans",
+          "id": "b53f8fdc-1485-4e52-921b-b3f20512cdf1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/timespans",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "timespans"
+              ]
+            },
+            "description": "Retrieve a list of working time configurations and schedules."
+          },
+          "response": [
+            {
+              "id": "0aedc450-cf8f-4587-b848-987694ac9a1f",
+              "name": "Successful response with list of timespans",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/timespans",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "timespans"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"hoursPerDay\": \"<number>\",\n      \"daysPerWeek\": \"<integer>\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"hoursPerDay\": \"<number>\",\n      \"daysPerWeek\": \"<integer>\"\n    }\n  ],\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T00:27:41.000Z",
+              "updatedAt": "2026-07-28T00:27:41.000Z",
+              "uid": "35240-0aedc450-cf8f-4587-b848-987694ac9a1f"
+            },
+            {
+              "id": "63656dd9-8bf6-450c-9f02-8dee5488923b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/timespans",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "timespans"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T00:27:41.000Z",
+              "updatedAt": "2026-07-28T00:27:41.000Z",
+              "uid": "35240-63656dd9-8bf6-450c-9f02-8dee5488923b"
+            }
+          ],
+          "createdAt": "2026-07-28T00:27:40.000Z",
+          "updatedAt": "2026-07-28T00:27:40.000Z",
+          "uid": "35240-b53f8fdc-1485-4e52-921b-b3f20512cdf1"
+        }
+      ],
+      "id": "c3fde101-252d-4633-b16a-841506d148e0",
+      "createdAt": "2026-07-28T00:27:40.000Z",
+      "updatedAt": "2026-07-28T00:27:40.000Z",
+      "uid": "35240-c3fde101-252d-4633-b16a-841506d148e0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.absence.io/api/v2"
+    }
+  ]
+}

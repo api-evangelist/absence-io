@@ -1,0 +1,26 @@
+{
+  "provider": "absence-io",
+  "sources": [
+    "absence-io-absences-api-openapi.yml",
+    "absence-io-allowances-api-openapi.yml",
+    "absence-io-departments-api-openapi.yml",
+    "absence-io-locations-api-openapi.yml",
+    "absence-io-reason-types-api-openapi.yml",
+    "absence-io-timespans-api-openapi.yml",
+    "absence-io-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "absence-io-absences-api-openapi.yml",
+    "absence-io-allowances-api-openapi.yml",
+    "absence-io-departments-api-openapi.yml",
+    "absence-io-locations-api-openapi.yml",
+    "absence-io-reason-types-api-openapi.yml",
+    "absence-io-timespans-api-openapi.yml",
+    "absence-io-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

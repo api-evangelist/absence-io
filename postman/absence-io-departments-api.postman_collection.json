@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "f16bff23-4057-404e-9fc5-f6b1e1d963a0",
+    "name": "Absence.io Absences Departments API",
+    "description": "The Absence.io REST API allows integration with absence management features. With this API, users can retrieve, create, update, and delete information related to employee absences, allowances, users, departments, locations, and reason types. All requests and responses use JSON format. Authentication uses the Hawk authentication scheme with an API key generated from the Absence.io account settings under Integrations.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:27:37.000Z",
+    "updatedAt": "2026-07-28T00:27:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f16bff23-4057-404e-9fc5-f6b1e1d963a0"
+  },
+  "item": [
+    {
+      "name": "departments",
+      "item": [
+        {
+          "name": "Absence.io List Departments",
+          "id": "1610d91e-9a47-47c7-8a25-253c21f09355",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/departments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "departments"
+              ]
+            },
+            "description": "Retrieve a list of departments in the organization."
+          },
+          "response": [
+            {
+              "id": "100ecc22-ebe6-48d5-9562-e85b7aecdf71",
+              "name": "Successful response with list of departments",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/departments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "departments"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"managerId\": \"<string>\",\n      \"parentId\": \"<string>\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"managerId\": \"<string>\",\n      \"parentId\": \"<string>\"\n    }\n  ],\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T00:27:38.000Z",
+              "updatedAt": "2026-07-28T00:27:38.000Z",
+              "uid": "35240-100ecc22-ebe6-48d5-9562-e85b7aecdf71"
+            },
+            {
+              "id": "95044bbd-abbf-473a-9fc5-277610e1f801",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"filter\": {},\n  \"relations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/departments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "departments"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T00:27:38.000Z",
+              "updatedAt": "2026-07-28T00:27:38.000Z",
+              "uid": "35240-95044bbd-abbf-473a-9fc5-277610e1f801"
+            }
+          ],
+          "createdAt": "2026-07-28T00:27:38.000Z",
+          "updatedAt": "2026-07-28T00:27:38.000Z",
+          "uid": "35240-1610d91e-9a47-47c7-8a25-253c21f09355"
+        }
+      ],
+      "id": "e076c3c8-d3d9-4cf1-a7d8-0832862edd32",
+      "createdAt": "2026-07-28T00:27:38.000Z",
+      "updatedAt": "2026-07-28T00:27:38.000Z",
+      "uid": "35240-e076c3c8-d3d9-4cf1-a7d8-0832862edd32"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.absence.io/api/v2"
+    }
+  ]
+}
