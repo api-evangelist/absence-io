@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Absence.io Absences Users API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Absence.io List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.absence.io/api/v2/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a paginated list of users in the organization with optional filters."
+        },
+        {
+          "info": {
+            "name": "Absence.io Get User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.absence.io/api/v2/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the user."
+              }
+            ]
+          },
+          "docs": "Retrieve a specific user record by their unique identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

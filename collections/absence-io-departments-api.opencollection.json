@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Absence.io Absences Departments API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Departments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Absence.io List Departments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.absence.io/api/v2/departments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a list of departments in the organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Absence.io Absences Timespans API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Timespans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Absence.io List Timespans",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.absence.io/api/v2/timespans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a list of working time configurations and schedules."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

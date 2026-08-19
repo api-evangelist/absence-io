@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Absence.io Absences Allowances API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Allowances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Absence.io List Allowances",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.absence.io/api/v2/allowances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a paginated list of employee leave allowances with optional filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

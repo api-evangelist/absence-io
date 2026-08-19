@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Absence.io Absences API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Absences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Absence.io List Absences",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.absence.io/api/v2/absences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a paginated list of employee absences with optional filters and related data resolution."
+        },
+        {
+          "info": {
+            "name": "Absence.io Get Absence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.absence.io/api/v2/absences/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the absence record."
+              }
+            ]
+          },
+          "docs": "Retrieve a specific absence record by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Absence.io Update Absence",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.absence.io/api/v2/absences/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the absence record."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing absence record by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Absence.io Delete Absence",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.absence.io/api/v2/absences/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the absence record."
+              }
+            ]
+          },
+          "docs": "Delete an absence record by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Absence.io Create Absence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.absence.io/api/v2/absences/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new absence record for an employee."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
