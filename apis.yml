@@ -163,6 +163,8 @@ apis:
   description: Operations for retrieving user/employee information.
   humanURL: https://www.absence.io/
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
