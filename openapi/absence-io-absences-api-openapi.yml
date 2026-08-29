@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Absence.io Absences API
   description: The Absence.io REST API allows integration with absence management features. With this API, users can retrieve, create, update, and delete information related to employee absences, allowances, users, departments, locations, and reason types. All requests and responses use JSON format. Authentication uses the Hawk authentication scheme with an API key generated from the Absence.io account settings under Integrations.
@@ -292,64 +292,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AbsenceInput:
-      title: AbsenceInput
-      description: Request body for creating or updating an absence record.
-      type: object
-      properties:
-        assignedToId:
-          type: string
-          description: ID of the user this absence is for.
-          example: '500456'
-        reasonId:
-          type: string
-          description: ID of the absence reason type.
-          example: '500789'
-        start:
-          type: string
-          format: date-time
-          description: Start date and time of the absence.
-          example: '2025-06-01T00:00:00.000Z'
-        end:
-          type: string
-          format: date-time
-          description: End date and time of the absence.
-          example: '2025-06-05T23:59:59.999Z'
-        comment:
-          type: string
-          description: Optional comment or note on the absence.
-          example: Annual leave
-    AbsenceListResponse:
-      title: AbsenceListResponse
-      description: Paginated list response containing absence records.
-      type: object
-      properties:
-        data:
-          type: array
-          description: Array of absence records.
-          items:
-            $ref: '#/components/schemas/Absence'
-        skip:
-          type: integer
-          description: Number of records skipped.
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page.
-          example: 50
-        count:
-          type: integer
-          description: Total count of matching records.
-          example: 25
-    SuccessResponse:
-      title: SuccessResponse
-      description: Generic success response.
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the operation was successful.
-          example: true
     Absence:
       title: Absence
       description: An employee absence record.
@@ -393,6 +335,55 @@ components:
           type: string
           description: Optional comment or note on the absence.
           example: Annual leave
+    SuccessResponse:
+      title: SuccessResponse
+      description: Generic success response.
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the operation was successful.
+          example: true
+    Error:
+      title: Error
+      description: Error response returned when a request fails.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message describing what went wrong.
+          example: Unauthorized
+        statusCode:
+          type: integer
+          description: HTTP status code.
+          example: 401
+    AbsenceInput:
+      title: AbsenceInput
+      description: Request body for creating or updating an absence record.
+      type: object
+      properties:
+        assignedToId:
+          type: string
+          description: ID of the user this absence is for.
+          example: '500456'
+        reasonId:
+          type: string
+          description: ID of the absence reason type.
+          example: '500789'
+        start:
+          type: string
+          format: date-time
+          description: Start date and time of the absence.
+          example: '2025-06-01T00:00:00.000Z'
+        end:
+          type: string
+          format: date-time
+          description: End date and time of the absence.
+          example: '2025-06-05T23:59:59.999Z'
+        comment:
+          type: string
+          description: Optional comment or note on the absence.
+          example: Annual leave
     ListRequest:
       title: ListRequest
       description: Common request body for list operations with pagination and filtering.
@@ -420,19 +411,28 @@ components:
           example:
           - assignedToId
           - reasonId
-    Error:
-      title: Error
-      description: Error response returned when a request fails.
+    AbsenceListResponse:
+      title: AbsenceListResponse
+      description: Paginated list response containing absence records.
       type: object
       properties:
-        error:
-          type: string
-          description: Error message describing what went wrong.
-          example: Unauthorized
-        statusCode:
+        data:
+          type: array
+          description: Array of absence records.
+          items:
+            $ref: '#/components/schemas/Absence'
+        skip:
           type: integer
-          description: HTTP status code.
-          example: 401
+          description: Number of records skipped.
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page.
+          example: 50
+        count:
+          type: integer
+          description: Total count of matching records.
+          example: 25
   securitySchemes:
     HawkAuth:
       type: http
