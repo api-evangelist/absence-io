@@ -2,10 +2,6 @@
   "repo": "absence-io",
   "feeds": [
     {
-      "source": "https://blog.absence.io/en/feed/",
-      "error": "URLError"
-    },
-    {
       "source": "https://docs.absence.io/#authentication",
       "feed_url": "https://docs.absence.io/#authentication",
       "title": "",
@@ -14,5 +10,5 @@
     }
   ],
   "post_count": 6,
-  "fetched": "2026-08-22T20:20:02Z"
+  "fetched": "2026-08-30T22:33:40Z"
 }
