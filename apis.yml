@@ -195,6 +195,8 @@ apis:
   - type: JSONSchema
     url: json-schema/allowance-schema.json
 common:
+  - type: Website
+    url: https://www.absence.io/
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/absenceio/overview
   - type: AgenticAccess
