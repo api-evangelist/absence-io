@@ -33,6 +33,11 @@ tags:
   - Absences
   - Employees
   - Leave Management
+  - Human Resources
+tags_raw:
+  - Absences
+  - Employees
+  - Leave Management
   - HR
 description: >-
   Absence.io is an innovative and efficient leave management software that simplifies the process of tracking and
@@ -113,6 +118,8 @@ apis:
   description: Operations for retrieving office location information.
   humanURL: https://www.absence.io/
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
