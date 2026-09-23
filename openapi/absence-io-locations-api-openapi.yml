@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Absence.io Absences Locations API
+  title: Absence.io Locations API
   description: The Absence.io REST API allows integration with absence management features. With this API, users can retrieve, create, update, and delete information related to employee absences, allowances, users, departments, locations, and reason types. All requests and responses use JSON format. Authentication uses the Hawk authentication scheme with an API key generated from the Absence.io account settings under Integrations.
   version: 2.0.0
   contact:
@@ -68,6 +68,27 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Location:
+      title: Location
+      description: An office or work location.
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the location.
+          example: '500888'
+        name:
+          type: string
+          description: Name of the location.
+          example: HQ-SanFrancisco
+        timezone:
+          type: string
+          description: Timezone identifier for this location.
+          example: America/Los_Angeles
+        country:
+          type: string
+          description: Country code for the location.
+          example: US
     ListRequest:
       title: ListRequest
       description: Common request body for list operations with pagination and filtering.
@@ -95,27 +116,19 @@ components:
           example:
           - assignedToId
           - reasonId
-    Location:
-      title: Location
-      description: An office or work location.
+    Error:
+      title: Error
+      description: Error response returned when a request fails.
       type: object
       properties:
-        _id:
+        error:
           type: string
-          description: Unique identifier of the location.
-          example: '500888'
-        name:
-          type: string
-          description: Name of the location.
-          example: HQ-SanFrancisco
-        timezone:
-          type: string
-          description: Timezone identifier for this location.
-          example: America/Los_Angeles
-        country:
-          type: string
-          description: Country code for the location.
-          example: US
+          description: Error message describing what went wrong.
+          example: Unauthorized
+        statusCode:
+          type: integer
+          description: HTTP status code.
+          example: 401
     LocationListResponse:
       title: LocationListResponse
       description: Paginated list response containing location records.
@@ -135,19 +148,6 @@ components:
         count:
           type: integer
           example: 5
-    Error:
-      title: Error
-      description: Error response returned when a request fails.
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message describing what went wrong.
-          example: Unauthorized
-        statusCode:
-          type: integer
-          description: HTTP status code.
-          example: 401
   securitySchemes:
     HawkAuth:
       type: http

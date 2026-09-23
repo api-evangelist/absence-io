@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Absence.io Absences Departments API
+  title: Absence.io Departments API
   description: The Absence.io REST API allows integration with absence management features. With this API, users can retrieve, create, update, and delete information related to employee absences, allowances, users, departments, locations, and reason types. All requests and responses use JSON format. Authentication uses the Hawk authentication scheme with an API key generated from the Absence.io account settings under Integrations.
   version: 2.0.0
   contact:
@@ -68,25 +68,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    DepartmentListResponse:
-      title: DepartmentListResponse
-      description: Paginated list response containing department records.
-      type: object
-      properties:
-        data:
-          type: array
-          description: Array of department records.
-          items:
-            $ref: '#/components/schemas/Department'
-        skip:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 50
-        count:
-          type: integer
-          example: 10
     ListRequest:
       title: ListRequest
       description: Common request body for list operations with pagination and filtering.
@@ -114,6 +95,25 @@ components:
           example:
           - assignedToId
           - reasonId
+    DepartmentListResponse:
+      title: DepartmentListResponse
+      description: Paginated list response containing department records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of department records.
+          items:
+            $ref: '#/components/schemas/Department'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 10
     Error:
       title: Error
       description: Error response returned when a request fails.

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Absence.io Absences Users API
+  title: Absence.io Users API
   description: The Absence.io REST API allows integration with absence management features. With this API, users can retrieve, create, update, and delete information related to employee absences, allowances, users, departments, locations, and reason types. All requests and responses use JSON format. Authentication uses the Hawk authentication scheme with an API key generated from the Absence.io account settings under Integrations.
   version: 2.0.0
   contact:
@@ -120,6 +120,44 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    User:
+      title: User
+      description: An employee user record.
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the user.
+          example: '500456'
+        name:
+          type: string
+          description: Full name of the user.
+          example: Jane Smith
+        email:
+          type: string
+          format: email
+          description: Email address of the user.
+          example: jsmith@example.com
+        departmentId:
+          type: string
+          description: ID of the department the user belongs to.
+          example: '500999'
+        locationId:
+          type: string
+          description: ID of the location the user is assigned to.
+          example: '500888'
+        teamId:
+          type: string
+          description: ID of the team the user belongs to.
+          example: '500111'
+        status:
+          type: integer
+          description: 'User status: 1=active, 0=inactive.'
+          example: 1
+        language:
+          type: string
+          description: User's preferred language code.
+          example: en
     ListRequest:
       title: ListRequest
       description: Common request body for list operations with pagination and filtering.
@@ -179,44 +217,6 @@ components:
         count:
           type: integer
           example: 100
-    User:
-      title: User
-      description: An employee user record.
-      type: object
-      properties:
-        _id:
-          type: string
-          description: Unique identifier of the user.
-          example: '500456'
-        name:
-          type: string
-          description: Full name of the user.
-          example: Jane Smith
-        email:
-          type: string
-          format: email
-          description: Email address of the user.
-          example: jsmith@example.com
-        departmentId:
-          type: string
-          description: ID of the department the user belongs to.
-          example: '500999'
-        locationId:
-          type: string
-          description: ID of the location the user is assigned to.
-          example: '500888'
-        teamId:
-          type: string
-          description: ID of the team the user belongs to.
-          example: '500111'
-        status:
-          type: integer
-          description: 'User status: 1=active, 0=inactive.'
-          example: 1
-        language:
-          type: string
-          description: User's preferred language code.
-          example: en
   securitySchemes:
     HawkAuth:
       type: http

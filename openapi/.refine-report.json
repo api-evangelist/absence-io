@@ -1,13 +1,7 @@
 {
   "provider": "absence-io",
   "sources": [
-    "absence-io-absences-api-openapi.yml",
-    "absence-io-allowances-api-openapi.yml",
-    "absence-io-departments-api-openapi.yml",
-    "absence-io-locations-api-openapi.yml",
-    "absence-io-reason-types-api-openapi.yml",
-    "absence-io-timespans-api-openapi.yml",
-    "absence-io-users-api-openapi.yml"
+    "_ae-authored/absence-io-openapi.yml"
   ],
   "outputs": [
     "absence-io-absences-api-openapi.yml",
@@ -22,7 +16,17 @@
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "absence-io-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "absence-io-absences-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "absence-io-allowances-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "absence-io-departments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "absence-io-locations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "absence-io-reason-types-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "absence-io-timespans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "absence-io-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
