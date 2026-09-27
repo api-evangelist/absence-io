@@ -88,40 +88,6 @@ components:
         count:
           type: integer
           example: 3
-    Timespan:
-      title: Timespan
-      description: A working time configuration defining work hours and schedule.
-      type: object
-      properties:
-        _id:
-          type: string
-          description: Unique identifier of the timespan.
-          example: '500567'
-        name:
-          type: string
-          description: Name of the working time configuration.
-          example: Standard Work Week
-        hoursPerDay:
-          type: number
-          description: Number of working hours per day.
-          example: 8
-        daysPerWeek:
-          type: integer
-          description: Number of working days per week.
-          example: 5
-    Error:
-      title: Error
-      description: Error response returned when a request fails.
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message describing what went wrong.
-          example: Unauthorized
-        statusCode:
-          type: integer
-          description: HTTP status code.
-          example: 401
     ListRequest:
       title: ListRequest
       description: Common request body for list operations with pagination and filtering.
@@ -149,6 +115,40 @@ components:
           example:
           - assignedToId
           - reasonId
+    Error:
+      title: Error
+      description: Error response returned when a request fails.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message describing what went wrong.
+          example: Unauthorized
+        statusCode:
+          type: integer
+          description: HTTP status code.
+          example: 401
+    Timespan:
+      title: Timespan
+      description: A working time configuration defining work hours and schedule.
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the timespan.
+          example: '500567'
+        name:
+          type: string
+          description: Name of the working time configuration.
+          example: Standard Work Week
+        hoursPerDay:
+          type: number
+          description: Number of working hours per day.
+          example: 8
+        daysPerWeek:
+          type: integer
+          description: Number of working days per week.
+          example: 5
   securitySchemes:
     HawkAuth:
       type: http

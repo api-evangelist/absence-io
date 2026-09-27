@@ -95,25 +95,6 @@ components:
           example:
           - assignedToId
           - reasonId
-    DepartmentListResponse:
-      title: DepartmentListResponse
-      description: Paginated list response containing department records.
-      type: object
-      properties:
-        data:
-          type: array
-          description: Array of department records.
-          items:
-            $ref: '#/components/schemas/Department'
-        skip:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 50
-        count:
-          type: integer
-          example: 10
     Error:
       title: Error
       description: Error response returned when a request fails.
@@ -148,6 +129,25 @@ components:
           type: string
           description: ID of the parent department if hierarchical.
           example: '500000'
+    DepartmentListResponse:
+      title: DepartmentListResponse
+      description: Paginated list response containing department records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of department records.
+          items:
+            $ref: '#/components/schemas/Department'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 10
   securitySchemes:
     HawkAuth:
       type: http

@@ -69,6 +69,31 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ReasonType:
+      title: ReasonType
+      description: An absence reason type (e.g., vacation, sick leave, parental leave).
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the reason type.
+          example: '500789'
+        name:
+          type: string
+          description: Display name of the absence reason.
+          example: Vacation
+        color:
+          type: string
+          description: Color code for displaying this absence type in the calendar.
+          example: '#4CAF50'
+        requiresApproval:
+          type: boolean
+          description: Whether absences of this type require manager approval.
+          example: true
+        affectsAllowance:
+          type: boolean
+          description: Whether absences of this type count against the employee's allowance.
+          example: true
     ListRequest:
       title: ListRequest
       description: Common request body for list operations with pagination and filtering.
@@ -96,6 +121,19 @@ components:
           example:
           - assignedToId
           - reasonId
+    Error:
+      title: Error
+      description: Error response returned when a request fails.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message describing what went wrong.
+          example: Unauthorized
+        statusCode:
+          type: integer
+          description: HTTP status code.
+          example: 401
     ReasonTypeListResponse:
       title: ReasonTypeListResponse
       description: Paginated list response containing reason type records.
@@ -115,44 +153,6 @@ components:
         count:
           type: integer
           example: 8
-    Error:
-      title: Error
-      description: Error response returned when a request fails.
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message describing what went wrong.
-          example: Unauthorized
-        statusCode:
-          type: integer
-          description: HTTP status code.
-          example: 401
-    ReasonType:
-      title: ReasonType
-      description: An absence reason type (e.g., vacation, sick leave, parental leave).
-      type: object
-      properties:
-        _id:
-          type: string
-          description: Unique identifier of the reason type.
-          example: '500789'
-        name:
-          type: string
-          description: Display name of the absence reason.
-          example: Vacation
-        color:
-          type: string
-          description: Color code for displaying this absence type in the calendar.
-          example: '#4CAF50'
-        requiresApproval:
-          type: boolean
-          description: Whether absences of this type require manager approval.
-          example: true
-        affectsAllowance:
-          type: boolean
-          description: Whether absences of this type count against the employee's allowance.
-          example: true
   securitySchemes:
     HawkAuth:
       type: http

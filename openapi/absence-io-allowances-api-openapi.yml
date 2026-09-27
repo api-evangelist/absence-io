@@ -72,65 +72,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ListRequest:
-      title: ListRequest
-      description: Common request body for list operations with pagination and filtering.
-      type: object
-      properties:
-        skip:
-          type: integer
-          description: Number of records to skip for pagination.
-          example: 0
-        limit:
-          type: integer
-          description: Maximum number of records to return per page.
-          example: 50
-        filter:
-          type: object
-          description: MongoDB-style filter object. Supports operators like $gte, $lte, $eq.
-          example:
-            start:
-              $gte: '2025-01-01T00:00:00.000Z'
-        relations:
-          type: array
-          description: List of related fields to resolve (dereference IDs to full objects).
-          items:
-            type: string
-          example:
-          - assignedToId
-          - reasonId
-    Error:
-      title: Error
-      description: Error response returned when a request fails.
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message describing what went wrong.
-          example: Unauthorized
-        statusCode:
-          type: integer
-          description: HTTP status code.
-          example: 401
-    AllowanceListResponse:
-      title: AllowanceListResponse
-      description: Paginated list response containing allowance records.
-      type: object
-      properties:
-        data:
-          type: array
-          description: Array of allowance records.
-          items:
-            $ref: '#/components/schemas/Allowance'
-        skip:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 50
-        count:
-          type: integer
-          example: 50
     Allowance:
       title: Allowance
       description: An employee leave allowance record for a specific reason type and year.
@@ -168,6 +109,65 @@ components:
           type: number
           description: Number of days carried over from the previous year.
           example: 0
+    Error:
+      title: Error
+      description: Error response returned when a request fails.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message describing what went wrong.
+          example: Unauthorized
+        statusCode:
+          type: integer
+          description: HTTP status code.
+          example: 401
+    AllowanceListResponse:
+      title: AllowanceListResponse
+      description: Paginated list response containing allowance records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of allowance records.
+          items:
+            $ref: '#/components/schemas/Allowance'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 50
+    ListRequest:
+      title: ListRequest
+      description: Common request body for list operations with pagination and filtering.
+      type: object
+      properties:
+        skip:
+          type: integer
+          description: Number of records to skip for pagination.
+          example: 0
+        limit:
+          type: integer
+          description: Maximum number of records to return per page.
+          example: 50
+        filter:
+          type: object
+          description: MongoDB-style filter object. Supports operators like $gte, $lte, $eq.
+          example:
+            start:
+              $gte: '2025-01-01T00:00:00.000Z'
+        relations:
+          type: array
+          description: List of related fields to resolve (dereference IDs to full objects).
+          items:
+            type: string
+          example:
+          - assignedToId
+          - reasonId
   securitySchemes:
     HawkAuth:
       type: http

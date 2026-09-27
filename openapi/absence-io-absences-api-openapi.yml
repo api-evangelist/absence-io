@@ -319,37 +319,6 @@ components:
           example:
           - assignedToId
           - reasonId
-    SuccessResponse:
-      title: SuccessResponse
-      description: Generic success response.
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the operation was successful.
-          example: true
-    AbsenceListResponse:
-      title: AbsenceListResponse
-      description: Paginated list response containing absence records.
-      type: object
-      properties:
-        data:
-          type: array
-          description: Array of absence records.
-          items:
-            $ref: '#/components/schemas/Absence'
-        skip:
-          type: integer
-          description: Number of records skipped.
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page.
-          example: 50
-        count:
-          type: integer
-          description: Total count of matching records.
-          example: 25
     Absence:
       title: Absence
       description: An employee absence record.
@@ -393,6 +362,19 @@ components:
           type: string
           description: Optional comment or note on the absence.
           example: Annual leave
+    Error:
+      title: Error
+      description: Error response returned when a request fails.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message describing what went wrong.
+          example: Unauthorized
+        statusCode:
+          type: integer
+          description: HTTP status code.
+          example: 401
     AbsenceInput:
       title: AbsenceInput
       description: Request body for creating or updating an absence record.
@@ -420,19 +402,37 @@ components:
           type: string
           description: Optional comment or note on the absence.
           example: Annual leave
-    Error:
-      title: Error
-      description: Error response returned when a request fails.
+    AbsenceListResponse:
+      title: AbsenceListResponse
+      description: Paginated list response containing absence records.
       type: object
       properties:
-        error:
-          type: string
-          description: Error message describing what went wrong.
-          example: Unauthorized
-        statusCode:
+        data:
+          type: array
+          description: Array of absence records.
+          items:
+            $ref: '#/components/schemas/Absence'
+        skip:
           type: integer
-          description: HTTP status code.
-          example: 401
+          description: Number of records skipped.
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page.
+          example: 50
+        count:
+          type: integer
+          description: Total count of matching records.
+          example: 25
+    SuccessResponse:
+      title: SuccessResponse
+      description: Generic success response.
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the operation was successful.
+          example: true
   securitySchemes:
     HawkAuth:
       type: http
