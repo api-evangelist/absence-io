@@ -147,6 +147,25 @@ components:
           example:
           - assignedToId
           - reasonId
+    UserListResponse:
+      title: UserListResponse
+      description: Paginated list response containing user records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of user records.
+          items:
+            $ref: '#/components/schemas/User'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 100
     Error:
       title: Error
       description: Error response returned when a request fails.
@@ -198,25 +217,6 @@ components:
           type: string
           description: User's preferred language code.
           example: en
-    UserListResponse:
-      title: UserListResponse
-      description: Paginated list response containing user records.
-      type: object
-      properties:
-        data:
-          type: array
-          description: Array of user records.
-          items:
-            $ref: '#/components/schemas/User'
-        skip:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 50
-        count:
-          type: integer
-          example: 100
   securitySchemes:
     HawkAuth:
       type: http

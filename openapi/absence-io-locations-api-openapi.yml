@@ -68,19 +68,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
-      title: Error
-      description: Error response returned when a request fails.
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message describing what went wrong.
-          example: Unauthorized
-        statusCode:
-          type: integer
-          description: HTTP status code.
-          example: 401
     Location:
       title: Location
       description: An office or work location.
@@ -102,25 +89,6 @@ components:
           type: string
           description: Country code for the location.
           example: US
-    LocationListResponse:
-      title: LocationListResponse
-      description: Paginated list response containing location records.
-      type: object
-      properties:
-        data:
-          type: array
-          description: Array of location records.
-          items:
-            $ref: '#/components/schemas/Location'
-        skip:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 50
-        count:
-          type: integer
-          example: 5
     ListRequest:
       title: ListRequest
       description: Common request body for list operations with pagination and filtering.
@@ -148,6 +116,38 @@ components:
           example:
           - assignedToId
           - reasonId
+    Error:
+      title: Error
+      description: Error response returned when a request fails.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message describing what went wrong.
+          example: Unauthorized
+        statusCode:
+          type: integer
+          description: HTTP status code.
+          example: 401
+    LocationListResponse:
+      title: LocationListResponse
+      description: Paginated list response containing location records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of location records.
+          items:
+            $ref: '#/components/schemas/Location'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 5
   securitySchemes:
     HawkAuth:
       type: http

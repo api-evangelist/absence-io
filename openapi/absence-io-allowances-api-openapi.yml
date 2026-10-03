@@ -109,6 +109,33 @@ components:
           type: number
           description: Number of days carried over from the previous year.
           example: 0
+    ListRequest:
+      title: ListRequest
+      description: Common request body for list operations with pagination and filtering.
+      type: object
+      properties:
+        skip:
+          type: integer
+          description: Number of records to skip for pagination.
+          example: 0
+        limit:
+          type: integer
+          description: Maximum number of records to return per page.
+          example: 50
+        filter:
+          type: object
+          description: MongoDB-style filter object. Supports operators like $gte, $lte, $eq.
+          example:
+            start:
+              $gte: '2025-01-01T00:00:00.000Z'
+        relations:
+          type: array
+          description: List of related fields to resolve (dereference IDs to full objects).
+          items:
+            type: string
+          example:
+          - assignedToId
+          - reasonId
     Error:
       title: Error
       description: Error response returned when a request fails.
@@ -141,33 +168,6 @@ components:
         count:
           type: integer
           example: 50
-    ListRequest:
-      title: ListRequest
-      description: Common request body for list operations with pagination and filtering.
-      type: object
-      properties:
-        skip:
-          type: integer
-          description: Number of records to skip for pagination.
-          example: 0
-        limit:
-          type: integer
-          description: Maximum number of records to return per page.
-          example: 50
-        filter:
-          type: object
-          description: MongoDB-style filter object. Supports operators like $gte, $lte, $eq.
-          example:
-            start:
-              $gte: '2025-01-01T00:00:00.000Z'
-        relations:
-          type: array
-          description: List of related fields to resolve (dereference IDs to full objects).
-          items:
-            type: string
-          example:
-          - assignedToId
-          - reasonId
   securitySchemes:
     HawkAuth:
       type: http
