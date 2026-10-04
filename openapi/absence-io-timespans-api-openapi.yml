@@ -69,33 +69,25 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ListRequest:
-      title: ListRequest
-      description: Common request body for list operations with pagination and filtering.
+    TimespanListResponse:
+      title: TimespanListResponse
+      description: Paginated list response containing timespan records.
       type: object
       properties:
+        data:
+          type: array
+          description: Array of timespan records.
+          items:
+            $ref: '#/components/schemas/Timespan'
         skip:
           type: integer
-          description: Number of records to skip for pagination.
           example: 0
         limit:
           type: integer
-          description: Maximum number of records to return per page.
           example: 50
-        filter:
-          type: object
-          description: MongoDB-style filter object. Supports operators like $gte, $lte, $eq.
-          example:
-            start:
-              $gte: '2025-01-01T00:00:00.000Z'
-        relations:
-          type: array
-          description: List of related fields to resolve (dereference IDs to full objects).
-          items:
-            type: string
-          example:
-          - assignedToId
-          - reasonId
+        count:
+          type: integer
+          example: 3
     Timespan:
       title: Timespan
       description: A working time configuration defining work hours and schedule.
@@ -130,25 +122,33 @@ components:
           type: integer
           description: HTTP status code.
           example: 401
-    TimespanListResponse:
-      title: TimespanListResponse
-      description: Paginated list response containing timespan records.
+    ListRequest:
+      title: ListRequest
+      description: Common request body for list operations with pagination and filtering.
       type: object
       properties:
-        data:
-          type: array
-          description: Array of timespan records.
-          items:
-            $ref: '#/components/schemas/Timespan'
         skip:
           type: integer
+          description: Number of records to skip for pagination.
           example: 0
         limit:
           type: integer
+          description: Maximum number of records to return per page.
           example: 50
-        count:
-          type: integer
-          example: 3
+        filter:
+          type: object
+          description: MongoDB-style filter object. Supports operators like $gte, $lte, $eq.
+          example:
+            start:
+              $gte: '2025-01-01T00:00:00.000Z'
+        relations:
+          type: array
+          description: List of related fields to resolve (dereference IDs to full objects).
+          items:
+            type: string
+          example:
+          - assignedToId
+          - reasonId
   securitySchemes:
     HawkAuth:
       type: http

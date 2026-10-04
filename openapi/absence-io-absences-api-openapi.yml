@@ -292,19 +292,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
-      title: Error
-      description: Error response returned when a request fails.
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message describing what went wrong.
-          example: Unauthorized
-        statusCode:
-          type: integer
-          description: HTTP status code.
-          example: 401
     Absence:
       title: Absence
       description: An employee absence record.
@@ -348,6 +335,55 @@ components:
           type: string
           description: Optional comment or note on the absence.
           example: Annual leave
+    Error:
+      title: Error
+      description: Error response returned when a request fails.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message describing what went wrong.
+          example: Unauthorized
+        statusCode:
+          type: integer
+          description: HTTP status code.
+          example: 401
+    AbsenceInput:
+      title: AbsenceInput
+      description: Request body for creating or updating an absence record.
+      type: object
+      properties:
+        assignedToId:
+          type: string
+          description: ID of the user this absence is for.
+          example: '500456'
+        reasonId:
+          type: string
+          description: ID of the absence reason type.
+          example: '500789'
+        start:
+          type: string
+          format: date-time
+          description: Start date and time of the absence.
+          example: '2025-06-01T00:00:00.000Z'
+        end:
+          type: string
+          format: date-time
+          description: End date and time of the absence.
+          example: '2025-06-05T23:59:59.999Z'
+        comment:
+          type: string
+          description: Optional comment or note on the absence.
+          example: Annual leave
+    SuccessResponse:
+      title: SuccessResponse
+      description: Generic success response.
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the operation was successful.
+          example: true
     ListRequest:
       title: ListRequest
       description: Common request body for list operations with pagination and filtering.
@@ -397,42 +433,6 @@ components:
           type: integer
           description: Total count of matching records.
           example: 25
-    AbsenceInput:
-      title: AbsenceInput
-      description: Request body for creating or updating an absence record.
-      type: object
-      properties:
-        assignedToId:
-          type: string
-          description: ID of the user this absence is for.
-          example: '500456'
-        reasonId:
-          type: string
-          description: ID of the absence reason type.
-          example: '500789'
-        start:
-          type: string
-          format: date-time
-          description: Start date and time of the absence.
-          example: '2025-06-01T00:00:00.000Z'
-        end:
-          type: string
-          format: date-time
-          description: End date and time of the absence.
-          example: '2025-06-05T23:59:59.999Z'
-        comment:
-          type: string
-          description: Optional comment or note on the absence.
-          example: Annual leave
-    SuccessResponse:
-      title: SuccessResponse
-      description: Generic success response.
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the operation was successful.
-          example: true
   securitySchemes:
     HawkAuth:
       type: http

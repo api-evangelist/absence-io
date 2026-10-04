@@ -68,25 +68,27 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    DepartmentListResponse:
-      title: DepartmentListResponse
-      description: Paginated list response containing department records.
+    Department:
+      title: Department
+      description: An organizational department.
       type: object
       properties:
-        data:
-          type: array
-          description: Array of department records.
-          items:
-            $ref: '#/components/schemas/Department'
-        skip:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 50
-        count:
-          type: integer
-          example: 10
+        _id:
+          type: string
+          description: Unique identifier of the department.
+          example: '500999'
+        name:
+          type: string
+          description: Name of the department.
+          example: Engineering
+        managerId:
+          type: string
+          description: ID of the department manager.
+          example: '500456'
+        parentId:
+          type: string
+          description: ID of the parent department if hierarchical.
+          example: '500000'
     ListRequest:
       title: ListRequest
       description: Common request body for list operations with pagination and filtering.
@@ -114,6 +116,25 @@ components:
           example:
           - assignedToId
           - reasonId
+    DepartmentListResponse:
+      title: DepartmentListResponse
+      description: Paginated list response containing department records.
+      type: object
+      properties:
+        data:
+          type: array
+          description: Array of department records.
+          items:
+            $ref: '#/components/schemas/Department'
+        skip:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 50
+        count:
+          type: integer
+          example: 10
     Error:
       title: Error
       description: Error response returned when a request fails.
@@ -127,27 +148,6 @@ components:
           type: integer
           description: HTTP status code.
           example: 401
-    Department:
-      title: Department
-      description: An organizational department.
-      type: object
-      properties:
-        _id:
-          type: string
-          description: Unique identifier of the department.
-          example: '500999'
-        name:
-          type: string
-          description: Name of the department.
-          example: Engineering
-        managerId:
-          type: string
-          description: ID of the department manager.
-          example: '500456'
-        parentId:
-          type: string
-          description: ID of the parent department if hierarchical.
-          example: '500000'
   securitySchemes:
     HawkAuth:
       type: http

@@ -116,19 +116,6 @@ components:
           example:
           - assignedToId
           - reasonId
-    Error:
-      title: Error
-      description: Error response returned when a request fails.
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message describing what went wrong.
-          example: Unauthorized
-        statusCode:
-          type: integer
-          description: HTTP status code.
-          example: 401
     LocationListResponse:
       title: LocationListResponse
       description: Paginated list response containing location records.
@@ -148,6 +135,19 @@ components:
         count:
           type: integer
           example: 5
+    Error:
+      title: Error
+      description: Error response returned when a request fails.
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message describing what went wrong.
+          example: Unauthorized
+        statusCode:
+          type: integer
+          description: HTTP status code.
+          example: 401
   securitySchemes:
     HawkAuth:
       type: http
