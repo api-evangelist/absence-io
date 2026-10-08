@@ -202,6 +202,12 @@ apis:
   - type: JSONSchema
     url: json-schema/allowance-schema.json
 common:
+  - type: Plans
+    url: plans/absence-io-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/absence-io-rate-limits.yml
+  - type: FinOps
+    url: finops/absence-io-finops.yml
   - type: Website
     url: https://www.absence.io/
   - type: PostmanWorkspace
