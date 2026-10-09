@@ -1,35 +1,32 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/absence-io-openapi.yml
+source: openapi/absence-io-absences-api-openapi.yml, openapi/absence-io-allowances-api-openapi.yml,
+  openapi/absence-io-departments-api-openapi.yml, openapi/absence-io-locations-api-openapi.yml,
+  openapi/absence-io-reason-types-api-openapi.yml, openapi/absence-io-timespans-api-openapi.yml,
+  openapi/absence-io-users-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 12
   by_action_class:
-    acting: 10
-    connected: 2
+    connected: 9
+    acting: 3
   by_consequence:
-    write: 10
-    read: 2
+    read: 9
+    write: 3
   human_in_the_loop_required: 0
 operations:
 - path: /absences
   method: post
   operationId: listAbsences
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /absences/{id}
   method: get
   operationId: getAbsence
@@ -88,22 +85,66 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /allowances
+  method: post
+  operationId: listAllowances
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /departments
+  method: post
+  operationId: listDepartments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /locations
+  method: post
+  operationId: listLocations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reasontypes
+  method: post
+  operationId: listReasonTypes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /timespans
+  method: post
+  operationId: listTimespans
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /users
   method: post
   operationId: listUsers
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /users/{id}
   method: get
   operationId: getUser
@@ -114,83 +155,3 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /allowances
-  method: post
-  operationId: listAllowances
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /departments
-  method: post
-  operationId: listDepartments
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /locations
-  method: post
-  operationId: listLocations
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /reasontypes
-  method: post
-  operationId: listReasonTypes
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /timespans
-  method: post
-  operationId: listTimespans
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
