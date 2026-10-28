@@ -1,4 +1,4 @@
-# Absence.io (absence-io)
+# Absence.io
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,68 +66,192 @@
 
 Absence.io is an innovative and efficient leave management software that simplifies the process of tracking and managing employee absences. It provides a centralized platform for both employees and managers to easily request, approve, and track time-off requests. Absence.io helps streamline communication and ensure transparency within an organization by providing real-time updates on employee availability and leave balances. The REST API v2 allows integration with absences, users, allowances, departments, locations, reason types, and timespans using Hawk authentication.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/absence-io/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/absence-io/refs/heads/main/apis.yml)
+**Areas:** Absences · Employees · Leave Management · Human Resources
 
-## Scope
+## Absence.io on APIs.io
 
-- **Type:** Index
+Everything profiled for Absence.io is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/absence-io/](https://apis.io/providers/absence-io/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- Absences
-- Employees
-- Leave Management
-- HR
+- [Absence.io Absences API](https://apis.io/apis/absence-io/absence-io-absences-api/) — Operations for managing employee absence records.
+- [Absence.io Allowances API](https://apis.io/apis/absence-io/absence-io-allowances-api/) — Operations for managing employee leave allowances and balances.
+- [Absence.io Departments API](https://apis.io/apis/absence-io/absence-io-departments-api/) — Operations for retrieving organizational department information.
+- [Absence.io Locations API](https://apis.io/apis/absence-io/absence-io-locations-api/) — Operations for retrieving office location information.
+- [Absence.io Reason Types API](https://apis.io/apis/absence-io/absence-io-reason-types-api/) — Operations for retrieving absence reason type definitions.
+- [Absence.io Timespans API](https://apis.io/apis/absence-io/absence-io-timespans-api/) — Operations for retrieving working time configurations.
+- [Absence.io Users API](https://apis.io/apis/absence-io/absence-io-users-api/) — Operations for retrieving user/employee information.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-17
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Absence.io API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Absence.io REST API v2 allows seamless integration of absence management features into software applications. Retrieve, create, update, and delete records for absences, users, allowances, departments, locations, reason types, and timespans. All requests and responses use JSON format with Hawk authentication.
+- [Absence Io Agentic Access](https://apis.io/agentic-access/absence-io/absence-io-agentic-access/)
 
-- **Human URL:** [https://www.absence.io/](https://www.absence.io/)
+#### JSON Schema (7)
 
-#### Tags
+The data models the API reads and writes.
 
-- Absences
-- Employees
-- Leave Management
+- [Absence](https://apis.io/schemas/absence-io/absence/)
+- [Allowance](https://apis.io/schemas/absence-io/allowance/)
+- [Department](https://apis.io/schemas/absence-io/department/)
+- [Location](https://apis.io/schemas/absence-io/location/)
+- [ReasonType](https://apis.io/schemas/absence-io/reason-type/)
+- [Timespan](https://apis.io/schemas/absence-io/timespan/)
+- [User](https://apis.io/schemas/absence-io/user/)
 
-#### Properties
+#### JSON Structure (7)
 
-- [Documentation](https://docs.absence.io/)
-- [Authentication](https://docs.absence.io/#authentication)
-- [OpenAPI](openapi/absence-io-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/absence-io.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/absence-io.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [SDK](https://www.npmjs.com/package/absence.io)
-- [JSON Schema](json-schema/absence-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/user-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/allowance-schema.json) — [JSON Schema](https://json-schema.org/specification)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Absence Structure](https://apis.io/json-structure/absence-io/absence-structure/)
+- [Allowance Structure](https://apis.io/json-structure/absence-io/allowance-structure/)
+- [Department Structure](https://apis.io/json-structure/absence-io/department-structure/)
+- [Location Structure](https://apis.io/json-structure/absence-io/location-structure/)
+- [Reason Type Structure](https://apis.io/json-structure/absence-io/reason-type-structure/)
+- [Timespan Structure](https://apis.io/json-structure/absence-io/timespan-structure/)
+- [User Structure](https://apis.io/json-structure/absence-io/user-structure/)
 
-- [GitHub Organization](https://github.com/absenceio)
-- [LinkedIn](https://www.linkedin.com/company/absence-io)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Absence Io Context](https://apis.io/jsonld/absence-io/absence-io-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Absence Io Vocabulary](https://apis.io/vocabularies/absence-io/absence-io-vocabulary/)
+
+#### Examples (7)
+
+Example requests and responses.
+
+- [Absence Example](https://apis.io/examples/absence-io/absence-example/)
+- [Allowance Example](https://apis.io/examples/absence-io/allowance-example/)
+- [Department Example](https://apis.io/examples/absence-io/department-example/)
+- [Location Example](https://apis.io/examples/absence-io/location-example/)
+- [Reason Type Example](https://apis.io/examples/absence-io/reason-type-example/)
+- [Timespan Example](https://apis.io/examples/absence-io/timespan-example/)
+- [User Example](https://apis.io/examples/absence-io/user-example/)
+
+#### Collections (15)
+
+Postman and Open Collection request collections.
+
+- [Absence.io API](https://apis.io/collections/absence-io/open-absence-io/)
+- [Absence.io Absences API](https://apis.io/collections/absence-io/open-absence-io-absences-api/)
+- [Absence.io Absences Allowances API](https://apis.io/collections/absence-io/open-absence-io-allowances-api/)
+- [Absence.io Absences Departments API](https://apis.io/collections/absence-io/open-absence-io-departments-api/)
+- [Absence.io Absences Locations API](https://apis.io/collections/absence-io/open-absence-io-locations-api/)
+- [Absence.io Absences Reason Types API](https://apis.io/collections/absence-io/open-absence-io-reason-types-api/)
+- [Absence.io Absences Timespans API](https://apis.io/collections/absence-io/open-absence-io-timespans-api/)
+- [Absence.io Absences Users API](https://apis.io/collections/absence-io/open-absence-io-users-api/)
+- [Absence.io Absences API](https://apis.io/collections/absence-io/postman-absence-io-absences-api/)
+- [Absence.io Absences Allowances API](https://apis.io/collections/absence-io/postman-absence-io-allowances-api/)
+- [Absence.io Absences Departments API](https://apis.io/collections/absence-io/postman-absence-io-departments-api/)
+- [Absence.io Absences Locations API](https://apis.io/collections/absence-io/postman-absence-io-locations-api/)
+- [Absence.io Absences Reason Types API](https://apis.io/collections/absence-io/postman-absence-io-reason-types-api/)
+- [Absence.io Absences Timespans API](https://apis.io/collections/absence-io/postman-absence-io-timespans-api/)
+- [Absence.io Absences Users API](https://apis.io/collections/absence-io/postman-absence-io-users-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Absence.io — jsonschema rules](https://apis.io/rules/absence-io/absence-io-jsonschema-spectral-rules/)
+- [Absence.io API Rules](https://apis.io/rules/absence-io/absence-io-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Absence Io Authentication](https://apis.io/security/absence-io/absence-io-authentication/)
+- [Absence Io Domain Security](https://apis.io/security/absence-io/absence-io-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Absence Io Plans Pricing](https://apis.io/plans/absence-io/absence-io-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Absence Io Rate Limits](https://apis.io/rate-limits/absence-io/absence-io-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Absence Io Finops](https://apis.io/finops/absence-io/absence-io-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.absence.io/)
 - [Pricing](https://www.absence.io/pricing/pricing-packages/)
-- [Authentication](https://docs.absence.io/#authentication)
 - [Blog](https://blog.absence.io/en/)
-- [Partners](https://promo.absence.io/partner-program)
-- [Terms of Service](https://www.absence.io/terms-and-conditions/)
-- [Privacy Policy](https://www.absence.io/privacy-notice/)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Spectral Rules](rules/absence-io-spectral-rules.yml)
-- [Vocabulary](vocabulary/absence-io-vocabulary.yaml)
-- [JSON-LD](json-ld/absence-io-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Terms of service](https://www.absence.io/terms-and-conditions/)
+- [Privacy policy](https://www.absence.io/privacy-notice/)
+- [GitHub](https://github.com/absenceio)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 30.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 53.6 |
+| Contract quality | 29.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 39.5 |
+
+**Agent readiness 28.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.5** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/absence-io/](https://apis.io/providers/absence-io/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Absence.io: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/absence-io/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
